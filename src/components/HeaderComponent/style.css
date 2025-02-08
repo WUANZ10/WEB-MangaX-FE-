@@ -1,0 +1,234 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+body #main_header {
+    height: 70px;
+}
+
+body header.main_header {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    z-index: 4;
+    background-color: #101739;
+}
+
+.div_module {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* header.main_header --> div_module --> left */
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 30px;
+    float: left;
+}
+
+.left .logo {
+    float: left;
+    font-size: 20px;
+    line-height: 70px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.pc_display {
+    display: table-cell;
+}
+
+.left .logo img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+}
+
+.left .search {
+    width: 400px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.left .search input {
+    background-color: #2d334f;
+    width: 100%;
+    border-radius: 50px;
+    padding: 0 45px 0 20px;
+    color: #fff;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    height: 44px;
+    margin: 13px 0;
+    border: 2px solid #fff0;
+    transition: border-color 0.5s ease;
+}
+
+.left .search input::placeholder {
+    color: #fff;
+}
+
+.left .search input:hover {
+    border-color: rgb(211, 199, 199);
+}
+
+.left .search button {
+    color: #fff;
+    background: 0 0;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-10px, -50%);
+}
+
+/* header.main_header --> div_module --> right */
+.right {
+    float: right;
+    padding: 15px 0;
+}
+
+.right .button_style {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.right .button_style button {
+    width: 140px;
+    height: 40px;
+    border: 2px solid purple;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 150px;
+    font-size: 15px;
+    position: relative;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.right .button_style button:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+/* right --> button_style --> box */
+.box {
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 150px;
+    background: purple;
+    overflow: hidden;
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(0deg,
+            transparent,
+            transparent,
+            #45f3ff,
+            #45f3ff,
+            #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(0deg,
+            transparent,
+            transparent,
+            #45f3ff,
+            #45f3ff,
+            #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: 3s;
+}
+
+.border-line {
+    position: absolute;
+    top: 0;
+    inset: 0;
+}
+
+.border-line::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(0deg,
+            transparent,
+            transparent,
+            #ff2770,
+            #ff2770,
+            #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -1.5s;
+}
+
+.border-line::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(0deg,
+            transparent,
+            transparent,
+            #ff2770,
+            #ff2770,
+            #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -4.5s;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.text_button_login {
+    z-index: 2;
+}
