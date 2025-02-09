@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+import FooterComponent from "../../components/FooterComponent/FooterComponent";
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
-  )
+    <div>
+      HomePage
+      <FooterComponent />
+    </div>
+  );
 }

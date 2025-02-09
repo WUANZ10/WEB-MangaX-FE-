@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import "./style.css";
+import "./headerStyle.css";
 import { CiSearch } from "react-icons/ci";
 
 export default function HeaderComponent() {

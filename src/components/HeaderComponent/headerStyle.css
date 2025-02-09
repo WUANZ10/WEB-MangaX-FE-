@@ -33,7 +33,12 @@ body header.main_header {
 }
 
 /* header.main_header --> div_module --> left */
-.left {
+.pc_display {
+    display: table-cell;
+}
+
+
+#main_header .left {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +46,7 @@ body header.main_header {
     float: left;
 }
 
-.left .logo {
+#main_header .left .logo {
     float: left;
     font-size: 20px;
     line-height: 70px;
@@ -49,24 +54,20 @@ body header.main_header {
     letter-spacing: 1px;
 }
 
-.pc_display {
-    display: table-cell;
-}
-
-.left .logo img {
+#main_header .left .logo img {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 26px;
 }
 
-.left .search {
+#main_header .left .search {
     width: 400px;
     position: relative;
     margin-left: 20px;
 }
 
-.left .search input {
+#main_header .left .search input {
     background-color: #2d334f;
     width: 100%;
     border-radius: 50px;
@@ -81,15 +82,15 @@ body header.main_header {
     transition: border-color 0.5s ease;
 }
 
-.left .search input::placeholder {
+#main_header .left .search input::placeholder {
     color: #fff;
 }
 
-.left .search input:hover {
+#main_header .left .search input:hover {
     border-color: rgb(211, 199, 199);
 }
 
-.left .search button {
+#main_header .left .search button {
     color: #fff;
     background: 0 0;
     border: none;
@@ -100,18 +101,18 @@ body header.main_header {
 }
 
 /* header.main_header --> div_module --> right */
-.right {
+#main_header.right {
     float: right;
     padding: 15px 0;
 }
 
-.right .button_style {
+#main_header .right .button_style {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
 }
 
-.right .button_style button {
+#main_header .right .button_style button {
     width: 140px;
     height: 40px;
     border: 2px solid purple;
@@ -124,7 +125,7 @@ body header.main_header {
     transition: background-color 0.3s ease; /* Smooth transition */
 }
 
-.right .button_style button:hover {
+#main_header .right .button_style button:hover {
     background-color: rgba(255, 255, 255, 0.2); 
 }
 
