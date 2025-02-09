@@ -1,0 +1,57 @@
+#content {
+    display: flex;
+    gap: 20px;
+}
+
+/* configure css react-slick */
+.slick-prev:before {
+    content: '';
+}
+
+.slick-next:before {
+    content: '';
+}
+
+.slick-dots li.slick-active button:before {
+    color: #fff;
+}
+
+.slick-dots li button:before {
+    color: #fff;
+}
+
+/* div_module --> left */
+#content .left {
+    flex: 1;
+    max-width: calc(100% - 320px);
+}
+
+#content .left .pr_image img {
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#content .left .album_suggest {
+    margin: 30px 0;
+    width: 100%;
+    max-height: 380px;
+    overflow: hidden;
+    position: relative;
+}
+
+#content .left .album_suggest h1 {
+    border-left: 5px solid #6C74FC;
+    padding-left: 15px;
+    margin: 10px 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 40px;
+}
+
+#content .left .album_suggest h1 p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
