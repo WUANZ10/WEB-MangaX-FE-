@@ -2,6 +2,7 @@ import React from "react";
 import FooterComponent from "../../components/FooterComponent/FooterComponent";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import "./homePageStyle.css";
+import { Pagination } from "antd";
 
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
@@ -11,7 +12,7 @@ import { PiStarHalf } from "react-icons/pi";
 
 export default function HomePage() {
   return (
-    <div id="home_page">
+    <>
       <div className="div_module">
         <div id="content">
           <div className="left">
@@ -31,10 +32,23 @@ export default function HomePage() {
                 </p>
               </h1>
             </div>
+            <div className="page_redirect">
+              <Pagination align="center" defaultCurrent={1} total={50} />
+            </div>
+          </div>
+          <div className="right">
+            <div className="app">
+              <img src="https://cmangax.com/assets/img/premium.png" alt="" />
+              <p>
+                Thành viên VIP
+                <br />
+                <span>Đọc truyện không quảng cáo</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
       <FooterComponent />
-    </div>
+    </>
   );
 }

@@ -20,7 +20,20 @@
     color: #fff;
 }
 
-/* div_module --> left */
+/* configure css react-slick pagination */
+.anticon svg {
+    color: #f5deb3;
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-pagination .ant-pagination-item-active {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-pagination .ant-pagination-item a {
+    color: #999;
+}
+
+/* div_module --> content --> left */
 #content .left {
     flex: 1;
     max-width: calc(100% - 320px);
@@ -30,6 +43,8 @@
     margin-top: 20px;
     border-radius: 10px;
     cursor: pointer;
+    aspect-ratio: auto;
+    object-fit: cover;
 }
 
 #content .left .album_suggest {
@@ -54,4 +69,45 @@
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+#content .left .page_redirect {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    text-align: center;
+    max-width: 100%;
+}
+
+/* div_module --> content --> right */
+#content .right {
+    width: 300px;
+}
+
+#content .right .app {
+    background-color: #151D35;
+    padding: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 7px;
+    height: 70px;
+}
+
+#content .right .app img {
+    height: 50px;
+    float: left;
+}
+
+#content .right .app p {
+    float: left;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 5px 0;
+    margin-left: 7px;
+}
+
+#content .right .app p span {
+    font-size: 12px;
+    line-height: 18px;
+    color: #999;
 }
