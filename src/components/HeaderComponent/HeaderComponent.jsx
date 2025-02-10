@@ -33,12 +33,17 @@ export default function HeaderComponent() {
           </div>
           <div className="right">
             <div className="button_style">
-              <button className="pc_display text_button_register">
-                Đăng ký
-              </button>
+              <Link to="/register">
+                <button className="pc_display text_button_register">
+                  Đăng ký
+                </button>
+              </Link>
+
               <div className="box">
                 <span className="border-line" />
-                <button className="text_button_login">Đăng nhập</button>
+                <Link to="/login">
+                  <button className="text_button_login">Đăng nhập</button>
+                </Link>
               </div>
             </div>
           </div>
