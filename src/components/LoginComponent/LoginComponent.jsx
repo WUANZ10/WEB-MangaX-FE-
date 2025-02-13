@@ -1,15 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./loginStyle.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function LoginComponent() {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login successful!");
@@ -29,17 +22,13 @@ export default function LoginComponent() {
 
             <li>
               <p className="label text_password">Mật khẩu</p>
-              <div className="div_password">
-                <input
-                  className="password"
-                  type={showPassword ? "text" : "password"}
-                  id="login_password"
-                  required="required"
-                />
-                <span onClick={togglePasswordVisibility}>
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </span>
-              </div>
+
+              <input
+                className="password"
+                type="password"
+                id="login_password"
+                required="required"
+              />
             </li>
           </ul>
         </div>
