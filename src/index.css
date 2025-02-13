@@ -97,3 +97,20 @@ ul {
   border: 2px solid #6C74FC;
   outline: none;
 }
+
+.input_screen .form li .div_password {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input_screen .form li .div_password span {
+  position: absolute;
+  cursor: pointer;
+  margin: 0 10px;
+  right: 0;
+}
+
+.input_screen .form li .div_password .input-error {
+  border: 2px solid red;
+}
