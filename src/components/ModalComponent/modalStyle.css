@@ -1,0 +1,91 @@
+.modal_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+}
+
+.modal_container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal_container .modal_content {
+    position: relative;
+    background: url(https://cmangax.com/assets/img/image_login.png) no-repeat #131a33;
+    background-size: 100% auto;
+    width: 440px;
+    border: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.modal_container .modal_content .login_register {
+    padding: 0 10px;
+}
+
+.modal_container .modal_content .login_register .menu {
+    font-weight: 700;
+    color: #D9D9D9;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-family: inter;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.modal_container .modal_content .login_register .menu .item {
+    cursor: pointer;
+}
+
+.modal_container .modal_content .login_register .menu .item p {
+    margin-bottom: 5px;
+}
+
+.modal_container .modal_content .login_register .menu .item.active p {
+    color: #fff;
+}
+
+.modal_container .modal_content .login_register .menu .item p:hover {
+    color: #fff;
+}
+
+.modal_container .modal_content .login_register .menu .item .line {
+    height: 4px;
+    width: 32px;
+    background-color: #6C74FC;
+    display: none;
+    margin: 0 auto;
+    border-radius: 150px;
+}
+
+.modal_container .modal_content .login_register .menu .item.active>.line {
+    display: block;
+
+}
+
+.modal_container .modal_content .modal_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    width: 34px;
+    height: 34px;
+    background-color: #6C74FC;
+    border-radius: 150px;
+    font-size: 22px;
+    cursor: pointer;
+    border: none;
+}

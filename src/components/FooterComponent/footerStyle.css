@@ -18,34 +18,34 @@ body footer.main_footer {
     margin-bottom: 20px;
 }
 
-#main_footer .left .logo img {
+#main_footer .left .logo a img {
     height: 30px;
 }
 
-#main_footer .left p {
+#main_footer .left a p {
     font-size: 14px;
     line-height: 28px;
 }
 
-#main_footer .left .detail {
+#main_footer .left a .detail {
     margin: 10px 0;
 }
 
-#main_footer footer .left .link {
+#main_footer footer .left a .link {
     margin-bottom: 10px;
 }
 
-#main_footer .left .link a {
+#main_footer .left a .link a {
     font-weight: 600;
     margin-right: 10px;
 }
 
-#main_footer .left .text_footer_contact .relative>span {
+#main_footer .left a .text_footer_contact .relative>span {
     position: relative;
     padding-bottom: 5px;
 }
 
-#main_footer .left .text_footer_contact  .relative span::before {
+#main_footer .left a .text_footer_contact .relative span::before {
     content: "";
     right: 0;
     width: 100%;
@@ -58,7 +58,7 @@ body footer.main_footer {
     transform: scaleX(0);
 }
 
-#main_footer .left .text_footer_contact .relative:hover>span::before {
+#main_footer .left a .text_footer_contact .relative:hover>span::before {
     transform-origin: left;
     transform: scaleX(1);
 }
@@ -72,7 +72,7 @@ body footer.main_footer {
     line-height: 23px;
 }
 
-/* footer.main_footer --> div_module --> right --> main_gallery*/
+/* footer.main_footer --> div_module --> right --> social */
 .social {
     margin: 1rem 0;
     display: grid;
