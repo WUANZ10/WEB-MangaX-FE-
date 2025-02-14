@@ -1,0 +1,149 @@
+:root{
+    --button-bg-color:#6C74FC
+}
+
+/* profile user */
+
+.user-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    position: relative;
+}
+.user-container > .background-profile{
+    width: 100%;
+    top: 0;
+    position: absolute;
+    /* z-index: -1; */
+}
+.user-container .user-data{
+    margin-top:150px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user-data .user-avt{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid black;
+    position: relative;
+}
+
+.user-data .change-avt{
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+.user-data .change-avt svg{
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+}
+.user-container .form-data-user{
+    width: 500px;
+    color: white;
+}
+.user-container .form-data-user p{
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+.user-container .form-data-user input{
+    width: 100%;
+    background-color: #2A3254;
+    border-radius: 5px;
+    padding: 12px 10px;
+    font-size: 16px;
+    border: none;
+    color: white;
+}
+
+.user-container .form-data-user .update-profile{
+    width: 130px;
+    display: block;
+    margin-left: auto;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border: none;
+    background-color: var(--button-bg-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer ;
+}
+
+/* profile user */
+
+/* comic  */
+
+.comic-container{
+    width: 1000px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.comic-container .header-list p{
+    font-size: 18px;
+}
+.comic-container .list-container{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.comic-container .list-container .comic-container{
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #151D35;
+    padding: 12px;
+    cursor: pointer;
+}
+.list-container .comic-container img{
+    width: 62px;
+    height: 90px;
+}
+.list-container .comic-container .comic-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 20px;
+}
+.comic-container .comic-information .chapter{
+    font-size: 12px;
+    opacity: 0.6;
+}
+.list-container .comic-container .comic-rate{
+    width: 150px;
+    margin-left: auto;
+    position: relative;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+.comic-container .comic-rate .rate{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.comic-container .comic-rate .rate .icon-rate{
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.comic-container .comic-rate .rate p{
+    margin-left: 5px;
+}
+.comic-container .comic-rate .rate svg{
+    color: var(--button-bg-color);
+    /* background-color: var(--button-bg-color); */
+}
