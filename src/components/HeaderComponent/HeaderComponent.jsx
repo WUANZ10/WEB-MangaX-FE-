@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
+import ModalComponent from "../ModalComponent/ModalComponent";
 import "./headerStyle.css";
 import { CiSearch } from "react-icons/ci";
 
 export default function HeaderComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeComponent, setActiveComponent] = useState("login");
+
+  const openModal = (component) => {
+    setActiveComponent(component);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div id="main_header">
       <header className="main_header">
@@ -24,28 +36,34 @@ export default function HeaderComponent() {
                 placeholder="Bạn muốn tìm truyện gì"
               />
               <button>
-                <CiSearch style={{ fontSize: 28, cursor: "pointer" }} />
+                <CiSearch style={{ fontSize: 24, cursor: "pointer" }} />
               </button>
-              <div className="search_result" style={{ display: "none" }}>
-                <ul></ul>
-              </div>
+              <div className="search_result" style={{ display: "none" }}></div>
             </div>
           </div>
           <div className="right">
             <div className="button_style">
-              <Link to="/register">
-                <button className="pc_display text_button_register">
-                  Đăng ký
-                </button>
-              </Link>
-
+              <button
+                className="pc_display text_button_register"
+                onClick={() => openModal("register")}
+              >
+                Đăng ký
+              </button>
               <div className="box">
                 <span className="border-line" />
-                <Link to="/login">
-                  <button className="text_button_login">Đăng nhập</button>
-                </Link>
+                <button
+                  className="text_button_login"
+                  onClick={() => openModal("login")}
+                >
+                  Đăng nhập
+                </button>
               </div>
             </div>
+            <ModalComponent
+              isOpen={isOpen}
+              closeModal={closeModal}
+              activeComponent={activeComponent}
+            />
           </div>
         </div>
       </header>
