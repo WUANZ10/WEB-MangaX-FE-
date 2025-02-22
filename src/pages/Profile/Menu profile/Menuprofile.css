@@ -42,6 +42,7 @@
     text-align: center;
     margin-top: 10px;
     color: white;
+    cursor: pointer;
 }
 .user-data .change-avt svg{
     margin-left: 10px;
@@ -64,6 +65,10 @@
     font-size: 16px;
     border: none;
     color: white;
+    border: none;
+}
+.user-container .form-data-user input:focus-visible{
+    outline:1px solid rgb(80, 80, 255);
 }
 
 .user-container .form-data-user .update-profile{
@@ -91,7 +96,19 @@
     margin-right: auto;
     margin-top: 30px;
 }
-
+.comic-container .header-list{
+    display: flex;
+    justify-content: space-between;
+}
+.comic-container .header-list .upload-new-comic{
+    background-color: var(--button-bg-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
 .comic-container .header-list p{
     font-size: 18px;
 }
@@ -146,4 +163,33 @@
 .comic-container .comic-rate .rate svg{
     color: var(--button-bg-color);
     /* background-color: var(--button-bg-color); */
+}
+.password-container{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.password-container p{
+    margin-top: 10px;
+}
+.password-container input{
+    background-color: #2A3254;
+    border: none;
+    margin: 10px 0; 
+}
+.password-container input:focus-visible{
+    outline:1px solid rgb(80, 80, 255);
+}
+.password-container .update-password, .password-container .update-mail{
+    background-color: var(--button-bg-color);
+    color: white;
+    font-size: 15px;
+    width: 120px;
+    margin-left: auto;
+    display: block;
+    padding: 12px 8px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
 }
