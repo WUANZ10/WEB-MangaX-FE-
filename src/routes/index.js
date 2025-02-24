@@ -2,6 +2,7 @@ import HomePage from "../pages/HomePage/HomePage";
 import Login from "../pages/LoginPage/Login";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import Register from "../pages/RegisterPage/Register";
+import Comic from "../pages/ComicPage/ComicPage";
 
 export const routes = [
   {
@@ -17,6 +18,11 @@ export const routes = [
   {
     path: "/register",
     page: Register,
+    isShowHeader: true,
+  },
+  {
+    path: "/comic",
+    page: Comic,
     isShowHeader: true,
   },
   {
