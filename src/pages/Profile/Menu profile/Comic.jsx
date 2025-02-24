@@ -1,12 +1,27 @@
-import { Bookmark, CircleStop, Eye } from 'lucide-react'
-import React from 'react'
+import { Bookmark, CircleStop, Eye } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 export default function Comic(props) {
-  console.log(props)
+  const [textTitle,setTextTile]=useState('')
+  useEffect(()=>{
+    switch (props.type) {
+      case 'follower':
+        setTextTile('theo dõi')
+        break;
+      case 'viewed':
+        setTextTile('đã đọc')
+        break;
+      case 'upload':
+        setTextTile('đã đăng')
+        break;
+    }
+  },[props.type])
+  console.log(props);
   return (
     <div className="comic-container">
       <div className="header-list">
-        <p>Danh sách truyện theo dõi (0)</p>
+        <p>Danh sách truyện {textTitle} (0)</p>
+        {props.type === 'upload' ? <button className="upload-new-comic">Đăng truyện</button> : ''}
       </div>
       <div className="list-container">
         <div className="comic-container">
@@ -55,5 +70,5 @@ export default function Comic(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }

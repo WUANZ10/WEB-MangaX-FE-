@@ -8,7 +8,7 @@ export default function UserPassword() {
   })
 
   const handleChange=(e)=>{
-    const [name,value]=e.target
+    const {name,value}=e.target
     setPassword((data)=>({
       ...data,
       [name]:value
@@ -26,7 +26,8 @@ export default function UserPassword() {
         <p>Mật khẩu mới</p>
         <input type="text" name="newpass" value={password.newpass} onChange={handleChange} />
         <p>Xác nhận lại mật khẩu mới</p>
-        <input type="text" name="verifynewpass" value={password.verifypass} onChange={handleChange} />
+        <input type="text" name="verifypass" value={password.verifypass} onChange={handleChange} />
+        <button className="update-password">Cập nhật</button>
       </form>
     </div>
   )

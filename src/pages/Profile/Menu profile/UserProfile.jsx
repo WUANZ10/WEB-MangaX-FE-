@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import "./Menuprofile.css";
 import { Pencil } from "lucide-react";
 export default function UserProfile() {
-  const [userData, setUserData] = useState({
+  const [userInput, setUserInput] = useState({
     name: "",
     introduce: "",
   });
   const handleChange = (e) => {
     const {name,value}=e.target
-    setUserData((data)=>({
+    setUserInput((data)=>({
       ...data,
       [name]:value
     }))
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData.name + userData.introduce);
+    console.log(userInput.name + userInput.introduce);
     // ...
   };
 
@@ -35,11 +35,11 @@ export default function UserProfile() {
           </span>
         </p>
       </div>
-      <form className="form-data-user" onSubmit={""}>
+      <form className="form-data-user" onSubmit={handleSubmit}>
         <p>Tên hiển thị: </p>
-        <input type="text" name="name" onChange={handleChange} value={userData.name} />
+        <input type="text" name="name" onChange={handleChange} value={userInput.name} />
         <p>Giới thiệu: </p>
-        <input type="text" name="introduce" onChange={handleChange} value={userData.introduce} />
+        <input type="text" name="introduce" onChange={handleChange} value={userInput.introduce} />
         <button className="update-profile">Cập nhật</button>
       </form>
     </div>

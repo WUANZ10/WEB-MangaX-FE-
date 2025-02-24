@@ -70,7 +70,6 @@
 
 .profile-container {
     display: flex;
-    margin-top: 70px;
     position: relative;
 }
 
@@ -147,7 +146,7 @@
 
 .profile-container .profile-content {
     width: 80%;
-    height: calc(100vh - 100px);
+    height: 100vh;
     margin-left: auto;
     margin-right: auto;
 }

@@ -22,7 +22,7 @@ export default function HeaderComponent() {
         <div className="div_module">
           <div className="left">
             <div className="logo">
-              <Link to="/" className="pc_display">
+              <Link to="/home" className="pc_display">
                 <img
                   className="brand_logo_white"
                   alt="logo"
