@@ -1,23 +1,38 @@
 import React, { useState } from "react";
 import "./Menuprofile.css";
 import { Pencil } from "lucide-react";
+import axios from 'axios'
 export default function UserProfile() {
-  const [userData, setUserData] = useState({
+  const [userInput, setUserInput] = useState({
+    avatar:'/logo512.png',
     name: "",
-    introduce: "",
+    introduce:''
   });
   const handleChange = (e) => {
     const {name,value}=e.target
-    setUserData((data)=>({
+    setUserInput((data)=>({
       ...data,
       [name]:value
     }))
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData.name + userData.introduce);
+    console.log(userInput.name + userInput.introduce);
     // ...
   };
+  const [userData,setUserData]=useState({
+    avatar:'',
+    name:'',
+    introduce:''
+  })
+  const getUserData=async()=>{
+    try{
+      const user=await axios.get('')
+      console.log(user)
+    }catch(err){
+      console.error('fail get user data',err.response || err.message)
+    }
+  }
 
   return (
     <div className="user-container">
@@ -27,7 +42,7 @@ export default function UserProfile() {
         alt="background"
       />
       <div className="user-data">
-        <img className="user-avt" src="/logo512.png" alt="avt" />
+        <img className="user-avt" src={userInput.avatar} alt="avt" />
         <p className="change-avt">
           Đổi ảnh đại diện{" "}
           <span className="icon-change">
@@ -35,11 +50,11 @@ export default function UserProfile() {
           </span>
         </p>
       </div>
-      <form className="form-data-user" onSubmit={""}>
+      <form className="form-data-user" onSubmit={handleSubmit}>
         <p>Tên hiển thị: </p>
-        <input type="text" name="name" onChange={handleChange} value={userData.name} />
+        <input type="text" name="name" onChange={handleChange} value={userInput.name} />
         <p>Giới thiệu: </p>
-        <input type="text" name="introduce" onChange={handleChange} value={userData.introduce} />
+        <textarea name="introduce" cols="70" rows="10" onChange={handleChange} value={userInput.introduce}></textarea>
         <button className="update-profile">Cập nhật</button>
       </form>
     </div>
