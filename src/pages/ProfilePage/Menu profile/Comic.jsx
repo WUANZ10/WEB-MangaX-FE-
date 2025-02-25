@@ -13,24 +13,28 @@ export default function Comic(props) {
   ])
   useEffect(()=>{
     switch (props.type) {
-      case 'follower':
-        setTextTile('theo dõi')
+      case "follower":
+        setTextTile("theo dõi");
         break;
-      case 'viewed':
-        setTextTile('đã đọc')
+      case "viewed":
+        setTextTile("đã đọc");
         break;
-      case 'upload':
-        setTextTile('đã đăng')
+      case "upload":
+        setTextTile("đã đăng");
         break;
     }
-  },[props.type])
+  }, [props.type]);
   console.log(props);
 
   return (
     <div className="comic-container">
       <div className="header-list">
         <p>Danh sách truyện {textTitle} (0)</p>
-        {props.type === 'upload' ? <button className="upload-new-comic">Đăng truyện</button> : ''}
+        {props.type === "upload" ? (
+          <button className="upload-new-comic">Đăng truyện</button>
+        ) : (
+          ""
+        )}
       </div>
       <div className="list-container">
         <div className="comic-container">

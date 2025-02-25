@@ -4,9 +4,8 @@ import RootLayout from './RootLayout'
 import Private from './Private'
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"))
-const Footer = lazy(() => import("../components/FooterComponent/FooterComponent"))
 const NotFound = lazy(() => import("../pages/NotFoundPage/NotFoundPage"))
-const Profile = lazy(() => import("../pages/Profile/Profile"))
+const Profile = lazy(() => import("../pages/ProfilePage/Profile"))
 
 const Router = createBrowserRouter([
     {
