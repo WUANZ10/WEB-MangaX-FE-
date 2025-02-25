@@ -70,6 +70,23 @@
 .user-container .form-data-user input:focus-visible{
     outline:1px solid rgb(80, 80, 255);
 }
+.user-container .form-data-user textarea{
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #2A3254;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    resize: none;
+    scrollbar-width:thin; 
+    scrollbar-color: #6C63FF #2A3254; 
+}
+
+.user-container .form-data-user textarea:focus-visible{
+    outline: 1px solid rgb(80, 80, 255);
+}
 
 .user-container .form-data-user .update-profile{
     width: 130px;
