@@ -58,7 +58,7 @@ export default function LoginComponent() {
         <p className="forgot">
           <Link to="#">Quên mật khẩu?</Link>
         </p>
-        <LoadingComponent>
+        <LoadingComponent isLoading={isLoading}>
           <div className="button_click">
             <button
               className="button_yes text_button_login"

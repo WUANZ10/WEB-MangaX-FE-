@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const loginUser = async (data) => {
+  console.log(`${process.env.REACT_APP_API_URL}/user/login`)
   try {
     if (!data || !data.email || !data.password) {
       throw new Error("Email and password are required.");
@@ -10,6 +11,7 @@ export const loginUser = async (data) => {
       `${process.env.REACT_APP_API_URL}/user/login`,
       data
     );
+    
 
     return res.data;
   } catch (error) {
