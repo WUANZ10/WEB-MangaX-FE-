@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Menuprofile.css";
 import { Pencil } from "lucide-react";
 import axios from 'axios'
 export default function UserProfile() {
   const [userInput, setUserInput] = useState({
-    avatar:'/logo512.png',
-    name: "",
+    _id:'',
+    avatar:'',
+    username: "",
     introduce:''
   });
   const handleChange = (e) => {
@@ -20,20 +21,37 @@ export default function UserProfile() {
     console.log(userInput.name + userInput.introduce);
     // ...
   };
-  const [userData,setUserData]=useState({
-    avatar:'',
-    name:'',
-    introduce:''
-  })
+
   const getUserData=async()=>{
     try{
-      const user=await axios.get('')
-      console.log(user)
+      const userAPI=await axios.get('http://localhost:3001/api/user/data-user','67b48c0ff95f9f6eba206373')
+      // console.log(userAPI.data.data)
+      let {_id,username,avatar,introduce}=userAPI.data.data
+      if(avatar===''){
+        avatar='/User_Avatar.png'
+      }
+      setUserInput({
+        _id,
+        avatar,
+        username,
+        introduce
+      })
     }catch(err){
       console.error('fail get user data',err.response || err.message)
     }
   }
 
+  const updateUserData=async()=>{
+    try{
+      const userAPI=await axios.put('http://localhost:3001/api/user/update-user',userInput)
+      console.log(userAPI)  
+    }catch(err){
+      console.error('fail to update data',err.response || err.message)
+    }
+  }
+  useEffect(()=>{
+    getUserData()
+  },[])
   return (
     <div className="user-container">
       <img
@@ -52,10 +70,10 @@ export default function UserProfile() {
       </div>
       <form className="form-data-user" onSubmit={handleSubmit}>
         <p>Tên hiển thị: </p>
-        <input type="text" name="name" onChange={handleChange} value={userInput.name} />
+        <input type="text" name="username" onChange={handleChange} value={userInput.username} />
         <p>Giới thiệu: </p>
         <textarea name="introduce" cols="70" rows="10" onChange={handleChange} value={userInput.introduce}></textarea>
-        <button className="update-profile">Cập nhật</button>
+        <button className="update-profile" onClick={updateUserData}>Cập nhật</button>
       </form>
     </div>
   );
