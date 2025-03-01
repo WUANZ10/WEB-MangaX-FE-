@@ -1,43 +1,37 @@
 import React, { useState } from "react";
+import * as userService from "../../services/userService";
+import { useMutationHooks } from "../../hooks/useMutationHook";
+import LoadingComponent from "../LoadingComponent/LoadingComponent";
 
 export default function RegisterComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  const [username, setUsername] = useState("");
+
+  const mutation = useMutationHooks((data) => userService.registerUser(data));
+  const { isLoading, isError, error, isSuccess, data } = mutation;
+  console.log(mutation);
 
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);
   };
 
   const handleOnChangePassWord = (e) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-    setIsPasswordMatch(newPassword === confirmPassword);
+    setPassword(e.target.value);
   };
 
   const handleOnChangeConfirmPassWord = (e) => {
-    const newRePassword = e.target.value;
-    setConfirmPassword(newRePassword);
-    setIsPasswordMatch(password === newRePassword);
+    setConfirmPassword(e.target.value);
   };
 
-  const handleOnChangeName = (e) => {
-    setName(e.target.value);
+  const handleOnChangeUserName = (e) => {
+    setUsername(e.target.value);
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-
-    if (email && password && confirmPassword && name && isPasswordMatch) {
-      console.log("Register Success");
-      console.log("Email: ", email);
-      console.log("Password: ", password);
-      console.log("Name: ", name);
-    } else {
-      console.log("Register Fail");
-    }
+    mutation.mutate({ email, password, confirmPassword, username });
   };
 
   return (
@@ -49,6 +43,7 @@ export default function RegisterComponent() {
               <p className="label text_email">Email</p>
               <input
                 id="reg_email"
+                type="email"
                 value={email}
                 onChange={handleOnChangeEmail}
                 required="required"
@@ -57,9 +52,8 @@ export default function RegisterComponent() {
             <li>
               <p className="label text_password">Mật khẩu</p>
               <input
-                className="password"
-                type="password"
                 id="reg_password"
+                type="password"
                 value={password}
                 onChange={handleOnChangePassWord}
                 required="required"
@@ -69,7 +63,9 @@ export default function RegisterComponent() {
               <p className="label text_repassword">Nhập lại mật khẩu</p>
               <input
                 className={`password ${
-                  !isPasswordMatch && confirmPassword ? "input-error" : ""
+                  confirmPassword && password !== confirmPassword
+                    ? "input_error"
+                    : ""
                 }`}
                 type="password"
                 id="reg_re_password"
@@ -77,36 +73,43 @@ export default function RegisterComponent() {
                 onChange={handleOnChangeConfirmPassWord}
                 required="required"
               />
-              {!isPasswordMatch && confirmPassword && (
-                <p className="error-message">Passwords do not match</p>
-              )}
             </li>
             <li>
               <p className="label text_profile_name">Tên hiển thị</p>
               <input
                 id="reg_name"
                 required="required"
-                value={name}
-                onChange={handleOnChangeName}
+                value={username}
+                onChange={handleOnChangeUserName}
               />
             </li>
           </ul>
         </div>
-        <div className="button_click">
-          <button
-            className="button_yes full text_button_register"
-            type="submit"
-            disabled={
-              !email.length ||
-              !password.length ||
-              !confirmPassword.length ||
-              !name.length ||
-              !isPasswordMatch
-            }
-          >
-            Đăng ký
-          </button>
-        </div>
+        <LoadingComponent isLoading={isLoading}>
+          <div className="button_click">
+            <button
+              className="button_yes full text_button_register"
+              type="submit"
+              disabled={
+                !email.length ||
+                !password.length ||
+                !confirmPassword.length ||
+                !username.length ||
+                isLoading
+              }
+            >
+              Đăng ký
+            </button>
+          </div>
+        </LoadingComponent>
+        {isError && (
+          <div className="error_message">Đăng ký thất bại: {error.message}</div>
+        )}
+        {isSuccess && (
+          <div className="success_message">
+            Đăng ký thành công: {data.message}
+          </div>
+        )}
       </form>
     </div>
   );

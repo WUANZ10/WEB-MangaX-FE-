@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./loginStyle.css";
-import * as userService from "../../services/userService";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
+import "./loginStyle.css";
+import * as userService from "../../services/userService";
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,6 @@ export default function LoginComponent() {
   const mutation = useMutationHooks((data) => userService.loginUser(data));
   const { isLoading, isError, error, isSuccess, data } = mutation;
 
-  console.log(mutation)
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -32,11 +31,10 @@ export default function LoginComponent() {
         <div className="input_screen">
           <ul className="form">
             <li>
-              <p className="label text_email_or_username">
-                Tên đăng nhập hoặc email
-              </p>
+              <p className="label text_email_or_username">Email</p>
               <input
                 id="login_username"
+                type="email"
                 value={email}
                 onChange={handleOnChangeEmail}
                 required
@@ -46,8 +44,8 @@ export default function LoginComponent() {
             <li>
               <p className="label text_password">Mật khẩu</p>
               <input
-                type="password"
                 id="login_password"
+                type="password"
                 value={password}
                 onChange={handleOnChangePassword}
                 required
@@ -58,7 +56,7 @@ export default function LoginComponent() {
         <p className="forgot">
           <Link to="#">Quên mật khẩu?</Link>
         </p>
-        <LoadingComponent>
+        <LoadingComponent isLoading={isLoading}>
           <div className="button_click">
             <button
               className="button_yes text_button_login"
