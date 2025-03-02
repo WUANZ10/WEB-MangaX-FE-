@@ -22,7 +22,7 @@ const Router = createBrowserRouter([
                 element: <HomePage />
             },
             {  
-                path: 'album',
+                path: 'comic',
                 element:<Comic/>
             },
             {
