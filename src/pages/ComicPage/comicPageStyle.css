@@ -1,0 +1,58 @@
+#content {
+    display: flex;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: #101739;
+    padding: 20px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+#name {
+    font-size: 2vw;
+    margin-bottom: 10px;
+}
+
+.ladiv {
+    width: 20%;
+    aspect-ratio: 0.75;
+    border-radius: 8px;
+    border: solid 2px #2d334f;
+}
+
+.icon {
+    aspect-ratio: 1;
+    height: 100%;
+}
+
+.p {
+    font-size: 1vw;
+    text-overflow: ellipsis;
+}
+
+.statsdiv {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.button {
+    border-radius: 1000000000px;
+    border: none;
+    outline: none;
+    height: 100%;
+    padding: 10px 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1f2955;
+    color: white;
+    width: fit-content;
+
+}
+
+.white {
+    color: white;
+}
