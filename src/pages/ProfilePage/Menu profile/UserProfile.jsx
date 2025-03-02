@@ -16,11 +16,6 @@ export default function UserProfile() {
       [name]:value
     }))
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userInput.name + userInput.introduce);
-    // ...
-  };
 
   const getUserData=async()=>{
     try{
@@ -41,7 +36,9 @@ export default function UserProfile() {
     }
   }
 
-  const updateUserData=async()=>{
+  const updateUserData=async(e)=>{
+    console.log(userInput)
+    e.preventDefault()
     try{
       const userAPI=await axios.put('http://localhost:3001/api/user/update-user',userInput)
       console.log(userAPI)  
@@ -68,12 +65,12 @@ export default function UserProfile() {
           </span>
         </p>
       </div>
-      <form className="form-data-user" onSubmit={handleSubmit}>
+      <form className="form-data-user" onSubmit={updateUserData}>
         <p>Tên hiển thị: </p>
         <input type="text" name="username" onChange={handleChange} value={userInput.username} />
         <p>Giới thiệu: </p>
         <textarea name="introduce" cols="70" rows="10" onChange={handleChange} value={userInput.introduce}></textarea>
-        <button className="update-profile" onClick={updateUserData}>Cập nhật</button>
+        <button className="update-profile">Cập nhật</button>
       </form>
     </div>
   );
