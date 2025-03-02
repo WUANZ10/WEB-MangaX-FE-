@@ -4,6 +4,8 @@
     border-radius: 8px;
     background-color: #101739;
     padding: 20px;
+    width: 90%;
+    margin: 20px auto;
 }
 
 #name {
@@ -49,4 +51,8 @@
     color: white;
     width: fit-content;
 
+}
+
+.white {
+    color: white;
 }
