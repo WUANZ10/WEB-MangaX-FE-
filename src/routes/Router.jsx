@@ -2,11 +2,11 @@ import React, { lazy } from 'react'
 import { Navigate, createBrowserRouter } from 'react-router'
 import RootLayout from './RootLayout'
 import Private from './Private'
-import Comic from '../pages/ProfilePage/Menu profile/Comic'
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"))
 const NotFound = lazy(() => import("../pages/NotFoundPage/NotFoundPage"))
 const Profile = lazy(() => import("../pages/ProfilePage/Profile"))
+const Comic = lazy(()=>import("../pages/ComicPage/ComicPage"))
 
 const Router = createBrowserRouter([
     {
