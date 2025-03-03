@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
+import userService from "../../services/userService";
 import "./loginStyle.css";
-import * as userService from "../../services/userService";
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("");

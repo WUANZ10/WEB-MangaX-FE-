@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import * as userService from "../../services/userService";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
+import userService from "../../services/userService";
 
 export default function RegisterComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
-
+  
   const mutation = useMutationHooks((data) => userService.registerUser(data));
   const { isLoading, isError, error, isSuccess, data } = mutation;
-  console.log(mutation);
 
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);

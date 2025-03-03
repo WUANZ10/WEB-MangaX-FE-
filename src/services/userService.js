@@ -1,64 +1,63 @@
 import axios from "axios";
 
-export const loginUser = async (data) => {
-  try {
-    if (!data || !data.email || !data.password) {
-      throw new Error("Email and password are required.");
-    }
+const handleAxiosError = (error) => {
+  if (error.response) {
+    const errorMessage =
+      error.response.data.message || "Request failed. Please try again.";
+    throw new Error(errorMessage);
+  } else if (error.request) {
+    throw new Error("Unable to connect to the server. Please try again later.");
+  } else {
+    throw new Error("An error occurred. Please try again.");
+  }
+};
 
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/user/login`,
-      data
-    );
-
-    return res.data;
-  } catch (error) {
-    if (error.response) {
-      const errorMessage =
-        error.response.data.message || "Login failed. Please try again.";
-      throw new Error(errorMessage);
-    } else if (error.request) {
-      throw new Error(
-        "Unable to connect to the server. Please try again later."
-      );
-    } else {
-      throw new Error("An error occurred. Please try again.");
+const validateRequiredFields = (data, fields) => {
+  for (const field of fields) {
+    if (!data[field]) {
+      throw new Error(`${field} is required.`);
     }
   }
 };
 
-export const registerUser = async (data) => {
-  try {
-    if (!data || !data.email || !data.password || !data.username) {
-      throw new Error("Email, password, and name are required.");
-    }
+const userService = {
+  registerUser: async (data) => {
+    try {
+      validateRequiredFields(data, ["email", "password", "username"]);
 
-    if (data.password !== data.confirmPassword) {
-      throw new Error("Passwords do not match.");
-    }
-
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/user/register`,
-      {
-        email: data.email,
-        password: data.password,
-        confirmPassword: data.confirmPassword,
-        username: data.username,
+      if (data.password !== data.confirmPassword) {
+        throw new Error("Passwords do not match.");
       }
-    );
 
-    return res.data;
-  } catch (error) {
-    if (error.response) {
-      const errorMessage =
-        error.response.data.message || "Registration failed. Please try again.";
-      throw new Error(errorMessage);
-    } else if (error.request) {
-      throw new Error(
-        "Unable to connect to the server. Please try again later."
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/register`,
+        {
+          email: data.email,
+          password: data.password,
+          confirmPassword: data.confirmPassword,
+          username: data.username,
+        }
       );
-    } else {
-      throw new Error("An error occurred. Please try again.");
+
+      return res.data;
+    } catch (error) {
+      handleAxiosError(error);
     }
-  }
+  },
+
+  loginUser: async (data) => {
+    try {
+      validateRequiredFields(data, ["email", "password"]);
+
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/login`,
+        data
+      );
+      return res.data;
+    } catch (error) {
+      handleAxiosError(error);
+    }
+  },
 };
+
+export default userService;
