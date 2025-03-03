@@ -5,14 +5,14 @@ import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import userService from "../../services/userService";
 import { showSuccessToast, showErrorToast } from "../../config/toastConfig";
 
-export default function RegisterComponent() {
+export default function RegisterComponent({ onRegisterSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
 
   const mutation = useMutationHooks((data) => userService.registerUser(data));
-  const { isLoading, isError, error, isSuccess, data } = mutation;
+  const { isLoading } = mutation;
 
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -36,7 +36,8 @@ export default function RegisterComponent() {
       { email, password, confirmPassword, username },
       {
         onSuccess: () => {
-          showSuccessToast("Đăng ký thành công!"); 
+          showSuccessToast("Đăng ký thành công!");
+          onRegisterSuccess(); 
         },
         onError: (error) => {
           showErrorToast(`Đăng ký thất bại: ${error.message}`);

@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import userService from "../../services/userService";
 import { showSuccessToast, showErrorToast } from "../../config/toastConfig";
 import "./loginStyle.css";
 
-export default function LoginComponent() {
+export default function LoginComponent({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const mutation = useMutationHooks((data) => userService.loginUser(data));
-  const { isLoading, isError, error, isSuccess, data } = mutation;
+  const { isLoading } = mutation;
 
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -26,8 +28,12 @@ export default function LoginComponent() {
     mutation.mutate(
       { email, password },
       {
-        onSuccess: () => {
+        onSuccess: (response) => {
+          const { accessToken } = response.data;
+          localStorage.setItem("accessToken", accessToken);
           showSuccessToast("Đăng nhập thành công!");
+          onLoginSuccess();
+          navigate("/profile");
         },
         onError: (error) => {
           showErrorToast(`Đăng nhập thất bại: ${error.message}`);
