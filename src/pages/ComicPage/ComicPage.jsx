@@ -1,5 +1,4 @@
 import React from "react";
-import FooterComponent from "../../components/FooterComponent/FooterComponent";
 import "./comicPageStyle.css";
 import { FaBook, FaBookOpenReader, FaMagnifyingGlass, FaShare } from "react-icons/fa6";
 import { IoBookmarkSharp, IoEyeSharp, IoStar } from "react-icons/io5";
@@ -190,7 +189,6 @@ export default function ComicPage() {
           </div>
         </div>
       </div>
-      <FooterComponent />
     </>
   );
 }
