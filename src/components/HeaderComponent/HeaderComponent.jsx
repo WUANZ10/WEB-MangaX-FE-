@@ -16,6 +16,15 @@ export default function HeaderComponent() {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const handleRegisterSuccess = () => {
+    setActiveComponent("login");
+  };
+
+  const handleLoginSuccess = () => {
+    closeModal();
+  };
+
   return (
     <div id="main_header">
       <header className="main_header">
@@ -63,6 +72,8 @@ export default function HeaderComponent() {
               isOpen={isOpen}
               closeModal={closeModal}
               activeComponent={activeComponent}
+              onRegisterSuccess={handleRegisterSuccess}
+              onLoginSuccess={handleLoginSuccess}
             />
           </div>
         </div>
