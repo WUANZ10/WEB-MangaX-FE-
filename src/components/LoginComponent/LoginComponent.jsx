@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import userService from "../../services/userService";
+import { showSuccessToast, showErrorToast } from "../../config/toastConfig";
 import "./loginStyle.css";
 
 export default function LoginComponent() {
@@ -22,7 +23,17 @@ export default function LoginComponent() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    mutation.mutate({ email, password });
+    mutation.mutate(
+      { email, password },
+      {
+        onSuccess: () => {
+          showSuccessToast("Đăng nhập thành công!");
+        },
+        onError: (error) => {
+          showErrorToast(`Đăng nhập thất bại: ${error.message}`);
+        },
+      }
+    );
   };
 
   return (
@@ -67,16 +78,6 @@ export default function LoginComponent() {
             </button>
           </div>
         </LoadingComponent>
-        {isError && (
-          <div className="error_message">
-            Đăng nhập thất bại: {error.message}
-          </div>
-        )}
-        {isSuccess && (
-          <div className="success_message">
-            Đăng nhập thành công: {data.message}
-          </div>
-        )}
         <div className="other_login">
           <div className="title">
             <p className="text_or">Hoặc</p>

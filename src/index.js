@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router";
 import Router from "./routes/Router";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastProvider } from "./config/toastConfig";
 
 const queryClient = new QueryClient();
 
@@ -14,9 +15,9 @@ createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={Router} />
+      <ToastProvider />
     </QueryClientProvider>
   </Provider>
 );
 
-// Đo lường hiệu suất (tùy chọn)
 reportWebVitals();

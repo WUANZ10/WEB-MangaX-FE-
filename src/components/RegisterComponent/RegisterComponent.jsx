@@ -1,14 +1,16 @@
+// src/components/RegisterComponent/RegisterComponent.jsx
 import React, { useState } from "react";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import userService from "../../services/userService";
+import { showSuccessToast, showErrorToast } from "../../config/toastConfig";
 
 export default function RegisterComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
-  
+
   const mutation = useMutationHooks((data) => userService.registerUser(data));
   const { isLoading, isError, error, isSuccess, data } = mutation;
 
@@ -30,7 +32,17 @@ export default function RegisterComponent() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    mutation.mutate({ email, password, confirmPassword, username });
+    mutation.mutate(
+      { email, password, confirmPassword, username },
+      {
+        onSuccess: () => {
+          showSuccessToast("Đăng ký thành công!"); 
+        },
+        onError: (error) => {
+          showErrorToast(`Đăng ký thất bại: ${error.message}`);
+        },
+      }
+    );
   };
 
   return (
@@ -101,14 +113,6 @@ export default function RegisterComponent() {
             </button>
           </div>
         </LoadingComponent>
-        {isError && (
-          <div className="error_message">Đăng ký thất bại: {error.message}</div>
-        )}
-        {isSuccess && (
-          <div className="success_message">
-            Đăng ký thành công: {data.message}
-          </div>
-        )}
       </form>
     </div>
   );
