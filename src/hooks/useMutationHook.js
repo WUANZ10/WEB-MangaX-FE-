@@ -4,5 +4,5 @@ export const useMutationHooks = (fnCallBack) => {
   const mutation = useMutation({
     mutationFn: fnCallBack,
   });
-  return mutation
+  return mutation;
 };

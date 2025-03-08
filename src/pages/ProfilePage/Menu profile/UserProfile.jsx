@@ -2,53 +2,72 @@ import React, { useEffect, useState } from "react";
 import "./Menuprofile.css";
 import { Pencil } from "lucide-react";
 import axios from 'axios'
+import { useMutation, useQuery } from "react-query";
 export default function UserProfile() {
   const [userInput, setUserInput] = useState({
-    _id:'',
-    avatar:'',
+    _id: '67b48c0ff95f9f6eba206373',
+    avatar: '',
     username: "",
-    introduce:''
+    introduce: ''
   });
   const handleChange = (e) => {
-    const {name,value}=e.target
-    setUserInput((data)=>({
+    const { name, value } = e.target
+    setUserInput((data) => ({
       ...data,
-      [name]:value
+      [name]: value
     }))
   };
-
-  const getUserData=async()=>{
-    try{
-      const userAPI=await axios.get('http://localhost:3001/api/user/data-user','67b48c0ff95f9f6eba206373')
-      // console.log(userAPI.data.data)
-      let {_id,username,avatar,introduce}=userAPI.data.data
-      if(avatar===''){
-        avatar='/User_Avatar.png'
-      }
-      setUserInput({
-        _id,
-        avatar,
-        username,
-        introduce
-      })
-    }catch(err){
-      console.error('fail get user data',err.response || err.message)
+  const fetchUserById = async (userId) => {
+    const response = await axios.post('http://localhost:3001/api/user/data-user', userId)
+    return response.data.data
+  }
+  const fetchUpdateUser = async (userInput) => {
+    if(userInput.username.length>15){
+      throw new Error('Ko được quá 15 từ')
     }
+    const response = await axios.put('http://localhost:3001/api/user/update-user', userInput)
+    return response.data.data
   }
 
-  const updateUserData=async(e)=>{
-    console.log(userInput)
+  const mutation=useMutation(fetchUpdateUser,{
+    onSuccess:(data)=>{
+      alert('Success Update')
+      console.log(data)
+    },
+    onError:(error)=>{
+      alert(error.message)
+    }
+  })
+
+  const SubmitUpdate=(e)=>{
     e.preventDefault()
-    try{
-      const userAPI=await axios.put('http://localhost:3001/api/user/update-user',userInput)
-      console.log(userAPI)  
-    }catch(err){
-      console.error('fail to update data',err.response || err.message)
-    }
+    mutation.mutate(userInput)
   }
-  useEffect(()=>{
-    getUserData()
-  },[])
+
+  const { data: user, isLoading, error:getError } = useQuery(
+    ['user', userInput._id],
+    () => fetchUserById(userInput._id),
+    { enabled: userInput._id !== '' }
+  )
+
+  if(getError){
+    alert('Error user data')
+  }
+
+  useEffect(() => {
+    if (user) {
+      if (user.avatar === '') {
+        user.avatar = '/User_Avatar.png'
+      }
+      setUserInput((pre) => ({
+        ...pre,
+        avatar: user.avatar,
+        username: user.username,
+        introduce: user.introduce
+      }))     // ...pre để ko bị ghi đè trước khi gửi dữ liệu
+    }
+  }, [user])
+
   return (
     <div className="user-container">
       <img
@@ -65,7 +84,7 @@ export default function UserProfile() {
           </span>
         </p>
       </div>
-      <form className="form-data-user" onSubmit={updateUserData}>
+      <form className="form-data-user" onSubmit={SubmitUpdate}>
         <p>Tên hiển thị: </p>
         <input type="text" name="username" onChange={handleChange} value={userInput.username} />
         <p>Giới thiệu: </p>

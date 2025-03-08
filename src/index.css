@@ -98,6 +98,6 @@ ul {
   outline: none;
 }
 
-.input_screen .form li .input-error {
+.input_screen .form li .input_error {
   border: 2px solid red;
 }

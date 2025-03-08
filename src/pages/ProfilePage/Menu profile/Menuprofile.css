@@ -14,9 +14,9 @@
 }
 .user-container > .background-profile{
     width: 100%;
+    height: 180px;
     top: 0;
     position: absolute;
-    /* z-index: -1; */
 }
 .user-container .user-data{
     margin-top:150px;
@@ -197,7 +197,7 @@
 .password-container input:focus-visible{
     outline:1px solid rgb(80, 80, 255);
 }
-.password-container .update-password, .password-container .update-mail{
+.password-container .update-password{
     background-color: var(--button-bg-color);
     color: white;
     font-size: 15px;
