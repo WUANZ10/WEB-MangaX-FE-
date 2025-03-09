@@ -12,9 +12,6 @@ export default function UserPassword() {
   const fetchChangePass=async(dataPass)=>{
     try{
       const response=await axios.put('http://localhost:3001/api/user/change-pass',dataPass)
-      if(response.status>=400){
-        throw new Error(response.data.message || "Lỗi không xác định");
-      }
       return response
     }catch(error){
       throw error
@@ -55,9 +52,9 @@ export default function UserPassword() {
         <p>Mật khẩu cũ</p>
         <input type="text" name="oldpass" value={newPassword.oldpass} onChange={handleChange} />
         <p>Mật khẩu mới</p>
-        <input type="text" name="newpass" value={newPassword.newpass} onChange={handleChange} />
+        <input type="text" name="newpass" value={newPassword.newpass} autoComplete='new-password' onChange={handleChange} />
         <p>Xác nhận lại mật khẩu mới</p>
-        <input type="text" name="verifypass" value={newPassword.verifypass} onChange={handleChange} />
+        <input type="text" name="verifypass" value={newPassword.verifypass} autoComplete='new-password' onChange={handleChange} />
         <button className="update-password">Cập nhật</button>
       </form>
     </div>
