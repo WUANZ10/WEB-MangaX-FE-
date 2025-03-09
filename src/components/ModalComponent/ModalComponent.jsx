@@ -8,6 +8,8 @@ export default function ModalComponent({
   isOpen,
   closeModal,
   activeComponent,
+  onRegisterSuccess,
+  onLoginSuccess,
 }) {
   const [currentComponent, setCurrentComponent] = useState(activeComponent);
   const [activeItem, setActiveItem] = useState(activeComponent);
@@ -56,8 +58,12 @@ export default function ModalComponent({
               </div>
             </div>
             <div className="component_container">
-              {currentComponent === "login" && <LoginComponent />}
-              {currentComponent === "register" && <RegisterComponent />}
+              {currentComponent === "login" && (
+                <LoginComponent onLoginSuccess={onLoginSuccess} />
+              )}
+              {currentComponent === "register" && (
+                <RegisterComponent onRegisterSuccess={onRegisterSuccess} />
+              )}
             </div>
           </div>
 

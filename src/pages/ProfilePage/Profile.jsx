@@ -3,7 +3,6 @@ import "./Profile.css";
 import { BookHeart, FileClock, PanelLeftClose, PanelRightClose, ScrollText, User, UserCog } from "lucide-react";
 import UserProfile from './Menu profile/UserProfile'
 import UserPassword from './Menu profile/UserPassword'
-import Email from './Menu profile/Email'
 import Comic from './Menu profile/Comic'
 export default function Profile() {
   const [aside, setAside] = useState('');
@@ -62,7 +61,6 @@ export default function Profile() {
                 Cài đặt
               </p>
               <ul className={moreSetting}>
-                <li className="option extra-op" onClick={()=>setOptionMenu(<Email/>)}>Email</li>
                 <li className="option extra-op" onClick={()=>setOptionMenu(<UserPassword/>)}>Thay đổi mật khẩu</li>
               </ul>
             </div>
