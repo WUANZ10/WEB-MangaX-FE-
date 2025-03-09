@@ -14,10 +14,11 @@ export default function SliderComponent({ arrImages }) {
   return (
     <div>
       <Slider {...settings}>
-        {arrImages.map((image) => {
+        {arrImages.map((image, index) => {
           return (
             <>
               <img
+                key={index}
                 src={image}
                 alt="slider"
                 preview={false}

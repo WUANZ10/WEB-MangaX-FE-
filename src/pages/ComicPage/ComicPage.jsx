@@ -1,179 +1,194 @@
 import React from "react";
-import FooterComponent from "../../components/FooterComponent/FooterComponent";
 import "./comicPageStyle.css";
+import { FaBook, FaBookOpenReader, FaMagnifyingGlass, FaShare } from "react-icons/fa6";
+import { IoBookmarkSharp, IoEyeSharp, IoStar } from "react-icons/io5";
+import { RiImageEditFill, RiInformation2Fill } from "react-icons/ri";
+import { MdReport } from "react-icons/md";
 import { Pagination } from "antd";
 
 
-export default function HomePage() {
+export default function ComicPage() {
   return (
     <>
-      <div>
-        <div id="content" style={{"display":"flex","flexDirection":"column"}}>
-          <div style={{"width":"100%", "display":"flex"}}>
-            <div className="ladiv">
-              <img id="logo"/>
+      <div id="content">
+        {/* ----- TOP SECTION: LOGO + INFO ----- */}
+        <div className="top-section">
+          <div className="ladiv">
+            <img src="" id="logo" alt="Logo" />
+          </div>
+          <div className="info-section">
+            <h1 id="name" className="white comic-title">Comic Name Placeholder</h1>
+            <p className="artist-name">Author:Name / Artist: Name</p>
+
+            {/* Hàng TAG (trước đây là statsdiv với flex:4) */}
+            <div className="tags-row">
+              <p className="p white tag">Example Tag</p>
+              <p className="p white tag">Horror</p>
+              <p className="p white tag">Comedy</p>
             </div>
-            <div style={{"flex":"1", "margin":"10px", "display":"flex", "flexDirection":"column", "gap":"5px"}}>
-            <h1 id="name" className="white" style={{"marginBottom":"0", "fontSize":"30px"}}>Comic Name Placeholder</h1>
-            <p style={{"fontWeight":"450", "fontSize":"18.75px"}}>Artist Name</p>
-            <div className="statsdiv" style={{"flex":"4", "display":"flex", "flexDirection":"row"}}>
-            <p className="p white" style={{"padding":"0 7.5px", "border":"2.2px solid #77D172", "borderRadius":"1000000000px", "backgroundColor":"#39761D", "fontWeight":"600", "fontSize":"12.5px"}}>Example Tag</p>
-            <p className="p white" style={{"padding":"0 7.5px", "border":"2.2px solid #77D172", "borderRadius":"1000000000px", "backgroundColor":"#39761D", "fontWeight":"600", "fontSize":"12.5px"}}>Horror</p>
-            <p className="p white" style={{"padding":"0 7.5px", "border":"2.2px solid #77D172", "borderRadius":"1000000000px", "backgroundColor":"#39761D", "fontWeight":"600", "fontSize":"12.5px"}}>Comedy</p>
-            </div>
-            <div className="statsdiv" style={{"flex":"20", "display":"flex", "gap":"10px"}}>
-              <div style={{"width":"30%", "display":"flex"}}>
-                  <div style={{"width":"50%", "display":"flex"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"flex":"1", "marginLeft":"5px"}}>Chapters</p>
+
+            {/* Hàng STATS (trước đây là statsdiv với flex:20) */}
+            <div className="stats-row">
+              <div className="stats-column">
+                <div className="stats-column-left">
+                  <FaBookOpenReader />
+                  <p className="p label">Chapters</p>
                 </div>
-                <div style={{"width":"50%"}}>
-                  <p className="p" style={{"width":"100%", "fontWeight":"450"}}>1,234,567,890</p>
+                <div className="stats-column-right">
+                  <p className="p value">1,234,567,890</p>
                 </div>
               </div>
-              <div style={{"width":"30%", "display":"flex"}}>
-                <div style={{"width":"50%", "display":"flex"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"flex":"1", "marginLeft":"5px"}}>Views</p>
+              <div className="stats-column">
+                <div className="stats-column-left">
+                  <IoEyeSharp />
+                  <p className="p label">Views</p>
                 </div>
-                <div style={{"width":"50%"}}>
-                  <p className="p" style={{"width":"100%", "fontWeight":"450"}}>1,234,567,890</p>
+                <div className="stats-column-right">
+                  <p className="p value">1,234,567,890</p>
                 </div>
               </div>
-                <div style={{"width":"30%", "display":"flex"}}>
-                  <div style={{"width":"50%", "display":"flex"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"flex":"1", "marginLeft":"5px"}}>Favorites</p>
-                  </div>
-                  <div style={{"width":"50%"}}>
-                  <p className="p" style={{"width":"100%", "fontWeight":"450"}}>1,234,567,890</p>
-                  </div>
+              <div className="stats-column">
+                <div className="stats-column-left">
+                  <IoBookmarkSharp />
+                  <p className="p label">Favorites</p>
                 </div>
-                <div style={{"width":"30%", "display":"flex"}}>
-                  <div style={{"width":"50%", "display":"flex"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"flex":"1", "marginLeft":"5px"}}>Ratings</p>
-                  </div>
-                  <div style={{"width":"50%"}}>
-                  <p className="p" style={{"width":"100%", "fontWeight":"450"}}>9.8 / 10</p>
-                  </div>
+                <div className="stats-column-right">
+                  <p className="p value">1,234,567,890</p>
                 </div>
+              </div>
+              <div className="stats-column">
+                <div className="stats-column-left">
+                  <IoStar />
+                  <p className="p label">Ratings</p>
+                </div>
+                <div className="stats-column-right">
+                  <p className="p value">9.8 / 10</p>
+                </div>
+              </div>
             </div>
-            <div style={{"flex":"1", "display":"flex", "gap":"5px", "flexDirection":"row"}}>
-                <button className="button" style={{"backgroundColor":"#6C74FC"}}>
-                  <div style={{"width":"100%", "height":"100%", "display":"flex", "justifyContent":"center"}}>
-                    <img className="icon"/>
-                    <p className="p" style={{"marginLeft":"5px"}}>Read from Beginning</p>
-                  </div>
-                </button>
-                <button className="button">
-                  <div style={{"width":"100%", "height":"100%", "display":"flex", "justifyContent":"center"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"marginLeft":"5px"}}>Favorite</p>
-                  </div>
-                </button>
-                <button className="button">
-                <div style={{"width":"100%", "height":"100%", "display":"flex", "justifyContent":"center"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"marginLeft":"5px"}}>Share</p>
-                  </div>
-                </button>
-                <button className="button">
-                <div style={{"width":"100%", "height":"100%", "display":"flex", "justifyContent":"center"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"marginLeft":"5px"}}>Report</p>
-                  </div>
-                </button>
-                <button className="button">
-                <div style={{"width":"100%", "height":"100%", "display":"flex", "justifyContent":"center"}}>
-                  <img className="icon"/>
-                  <p className="p" style={{"marginLeft":"5px"}}>Edit</p>
-                  </div>
-                </button>
-            </div>
+
+            {/* Hàng BUTTONS (trước đây là flex:1) */}
+            <div className="buttons-row">
+              <button className="button read-btn">
+                <div className="button-inner">
+                <FaBook />
+                  <p className="p button-text">Read from Beginning</p>
+                </div>
+              </button>
+              <button className="button">
+                <div className="button-inner">
+                <IoBookmarkSharp />
+                  <p className="p button-text">Favorite</p>
+                </div>
+              </button>
+              <button className="button">
+                <div className="button-inner">
+                <FaShare />
+                  <p className="p button-text">Share</p>
+                </div>
+              </button>
+              <button className="button">
+                <div className="button-inner">
+                <MdReport />
+                  <p className="p button-text">Report</p>
+                </div>
+              </button>
+              <button className="button">
+                <div className="button-inner">
+                <RiImageEditFill />
+                  <p className="p button-text">Edit</p>
+                </div>
+              </button>
             </div>
           </div>
-          <div style={{"width":"100%", "height":"100%", "display":"flex", "flexDirection":"column", "gap":"20px"}}>
-          <div>
-            <img className="icon" style={{"height":"100%","aspectRatio":"1"}}/>
-            <h1 className="white" style={{"marginLeft":"10px", "fontSize":"30px"}}>Description</h1>
+        </div>
+
+        {/* ----- DESCRIPTION SECTION ----- */}
+        <div className="description-block">
+          <div className="desc-header">
+          <RiInformation2Fill />
+            <h1 className="white desc-title">Description</h1>
           </div>
-          <p className="p" style={{"fontWeight":"450", "fontSize":"18.75px"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et. Pellentesque fermentum cursus gravida. Sed eleifend pellentesque turpis in euismod. Aenean tempus augue eu odio gravida iaculis. Quisque non.</p>
-          </div>
-          <div style={{"width":"100%", "height":"100%", "display":"flex", "flexDirection":"column", "gap":"20px", "alignItems":"center"}}>
-          <h1 className="white" style={{"textAlign":"center", "fontSize":"30px"}}>Chapters</h1>
-          <div style={{"width":"80%", "height":"400px", "display":"flex","flexDirection":"column","gap":"10px"}}>
-          <div style={{"width":"100%", "flex":"1", "display":"flex","flexDirection":"row","gap":"10px"}}>
-            <div style={{"width":"100%", "flex":"9", "border":"2px solid #142262", "borderRadius":"8px", "backgroundColor":"#050B29"}}>
+          <p className="p desc-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et...
+          </p>
+        </div>
+
+        {/* ----- CHAPTERS SECTION ----- */}
+        <div className="chapters-wrapper">
+          <h1 className="white chapters-title">Chapters</h1>
+          <div className="chapters-box">
+            {/* Row trên: 2 khối (left 9, right 1) */}
+            <div className="chapter-top-row">
+              <input type="text" className="chapter-input" />
+              <button className="chapter-find"><FaMagnifyingGlass /></button>
             </div>
-            <div style={{"height":"100%", "aspectRatio":"1", "border":"2px solid #142262", "borderRadius":"8px", "backgroundColor":"#1F2955"}}>
-            </div>
-            </div>
-            <div style={{"width":"100%", "flex":"9", "border":"2px solid #142262", "borderRadius":"8px", "backgroundColor":"#0C1121", "display":"flex", "flexDirection":"column", "gap":"10px", "alignItems":"center", "padding":"10px", "aspectRatio":"1.25", "overflowY":"scroll"}}>
-            <div style={{"width":"100%", "borderRadius":"8px", "backgroundColor":"#101739", "padding":"10px", "display":"flex", "flexDirection":"row", "gap":"10px"}}>
-                <div className="ladiv" style={{"border":"2px solid #142262", "width":"10%"}}>
-                <img/>
+            {/* Row dưới: container list chapters */}
+            <div className="chapter-bottom-row">
+              <div className="chapter-item">
+                <div className="ladiv chapter-item-ladiv">
+                  <img src="" alt="Chapter 1" />
                 </div>
-                <div style={{"flex":"1"}}>
-                <h1 id="name" className="white" style={{"marginBottom":"0", "fontSize":"18.75px"}}>Chapter 1</h1>
-                <p className="p" style={{"fontSize": "17.1875", "fontWeight": "450"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et. Pellentesque fermentum cursus gravida. Sed eleifend pellentesque turpis in euismod. Aenean tempus augue eu odio gravida iaculis. Quisque non.</p>
+                <div className="chapter-item-text">
+                  <h1 id="name" className="white chapter-item-title">Chapter 1</h1>
+                  <p className="p chapter-item-desc">Lorem ipsum dolor sit amet...</p>
                 </div>
               </div>
-              <div style={{"width":"100%", "borderRadius":"8px", "backgroundColor":"#101739", "padding":"10px", "display":"flex", "flexDirection":"row", "gap":"10px"}}>
-                <div className="ladiv" style={{"border":"2px solid #142262", "width":"10%"}}>
-                <img/>
+              <div className="chapter-item">
+                <div className="ladiv chapter-item-ladiv">
+                  <img src="" alt="Chapter 2" />
                 </div>
-                <div style={{"flex":"1"}}>
-                <h1 id="name" className="white" style={{"marginBottom":"0", "fontSize":"18.75px"}}>Chapter 2</h1>
-                <p className="p" style={{"fontSize": "17.1875", "fontWeight": "450"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et. Pellentesque fermentum cursus gravida. Sed eleifend pellentesque turpis in euismod. Aenean tempus augue eu odio gravida iaculis. Quisque non.</p>
-                </div>
-              </div>
-              <div style={{"width":"100%", "borderRadius":"8px", "backgroundColor":"#101739", "padding":"10px", "display":"flex", "flexDirection":"row", "gap":"10px"}}>
-                <div className="ladiv" style={{"border":"2px solid #142262", "width":"10%"}}>
-                <img/>
-                </div>
-                <div style={{"flex":"1"}}>
-                <h1 id="name" className="white" style={{"marginBottom":"0", "fontSize":"18.75px"}}>Chapter 3</h1>
-                <p className="p" style={{"fontSize": "17.1875", "fontWeight": "450"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et. Pellentesque fermentum cursus gravida. Sed eleifend pellentesque turpis in euismod. Aenean tempus augue eu odio gravida iaculis. Quisque non.</p>
+                <div className="chapter-item-text">
+                  <h1 id="name" className="white chapter-item-title">Chapter 2</h1>
+                  <p className="p chapter-item-desc">Lorem ipsum dolor sit amet...</p>
                 </div>
               </div>
-              <div style={{"width":"100%", "borderRadius":"8px", "backgroundColor":"#101739", "padding":"10px", "display":"flex", "flexDirection":"row", "gap":"10px"}}>
-                <div className="ladiv" style={{"border":"2px solid #142262", "width":"10%"}}>
-                <img/>
+              <div className="chapter-item">
+                <div className="ladiv chapter-item-ladiv">
+                  <img src="" alt="Chapter 3" />
                 </div>
-                <div style={{"flex":"1"}}>
-                <h1 id="name" className="white" style={{"marginBottom":"0", "fontSize":"18.75px"}}>Chapter 4</h1>
-                <p className="p" style={{"fontSize": "17.1875", "fontWeight": "450"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et. Pellentesque fermentum cursus gravida. Sed eleifend pellentesque turpis in euismod. Aenean tempus augue eu odio gravida iaculis. Quisque non.</p>
+                <div className="chapter-item-text">
+                  <h1 id="name" className="white chapter-item-title">Chapter 3</h1>
+                  <p className="p chapter-item-desc">Lorem ipsum dolor sit amet...</p>
                 </div>
               </div>
-            </div>
-          </div>
-          </div>
-          <div style={{"width":"100%", "height":"100%", "display":"flex", "flexDirection":"column", "gap":"20px", "alignItems":"center"}}>
-          <h1 className="white" style={{"textAlign":"center", "fontSize":"30px"}}>Comments</h1>
-          <div style={{"width":"80%", "height":"400px", "display":"flex","flexDirection":"column","gap":"10px"}}>
-          <div style={{"width":"100%", "flex":"1", "display":"flex","flexDirection":"row","gap":"10px"}}>
-            <div style={{"width":"100%", "flex":"9", "border":"2px solid #142262", "borderRadius":"8px", "backgroundColor":"#050B29"}}>
-            </div>
-            <div style={{"height":"100%", "aspectRatio":"1", "border":"2px solid #142262", "borderRadius":"8px", "backgroundColor":"#6C74FC"}}>
-            </div>
-            </div>
-            <div style={{"width":"100%", "flex":"9", "border":"2px solid #142262", "borderRadius":"8px", "backgroundColor":"#0C1121", "display":"flex", "flexDirection":"column", "gap":"10px", "alignItems":"center", "padding":"10px", "aspectRatio":"1.25", "overflowY":"scroll"}}>
-              <div style={{"display":"flex", "flexDirection":"column", "gap":"5px", "width":"100%"}}>
-                <p className="white" style={{"fontSize":"18.75px"}}>Username</p>
-                <div style={{"display":"flex", "flexDirection":"row", "gap":"5px"}}>
-                  <img className="icon" style={{"height":"32px","aspectRatio":"1", "border":"2px solid #101739", "borderRadius":"1000000px"}}/>
-                  <div style={{"padding":"10px", "border":"2px solid #151D35", "backgroundColor":"#1F2955", "height":"fit-content", "borderRadius":"8px"}}>
-                    <p style={{"fontWeight":"450", "fontSize":"15.625px"}}>Lorem Ipsum Dolor Sit Amet</p>
-                  </div>
+              <div className="chapter-item">
+                <div className="ladiv chapter-item-ladiv">
+                  <img src="" alt="Chapter 4" />
+                </div>
+                <div className="chapter-item-text">
+                  <h1 id="name" className="white chapter-item-title">Chapter 4</h1>
+                  <p className="p chapter-item-desc">Lorem ipsum dolor sit amet...</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* ----- COMMENTS SECTION ----- */}
+        <div className="comments-wrapper">
+          <h1 className="white comments-title">Comments</h1>
+          <div className="comments-box">
+            {/* Row trên: 2 khối (left 9, right 1) */}
+            <div className="comments-top-row">
+              <div className="comments-left"></div>
+              <div className="comments-right"></div>
+            </div>
+            {/* Row dưới: container list comments */}
+            <div className="comments-bottom-row">
+              <div className="comment-user-block">
+                <p className="white comment-username">Username</p>
+                <div className="comment-row">
+                  <img src="" className="icon comment-avatar" alt="Avatar" />
+                  <div className="comment-bubble">
+                    <p className="comment-text">Lorem Ipsum Dolor Sit Amet</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <FooterComponent />
     </>
   );
 }

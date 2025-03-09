@@ -31,17 +31,17 @@ export default function FooterComponent() {
               </p>
               <p
                 className="link text_footer_contact"
-                placeholder="Email khiếu nại: cmangadotcom@gmail.com<br/><a class='no_hover'>Giới thiệu</a><a class='no_hover'>Liên hệ</a><a class='no_hover'>Chính sách</a><br />"
+                placeholder="Email khiếu nại: mindxcom@gmail.com<br/><a class='no_hover'>Giới thiệu</a><a class='no_hover'>Liên hệ</a><a class='no_hover'>Chính sách</a><br />"
               >
                 Email khiếu nại: mindxcom@gmail.com
                 <br />
-                <Link to="/" className="relative">
+                <Link to="#" className="relative">
                   <span> Giới thiệu</span>
                 </Link>
-                <Link to="/" className="relative">
+                <Link to="#" className="relative">
                   <span>Liên hệ</span>
                 </Link>
-                <Link to="/" className="relative">
+                <Link to="#" className="relative">
                   <span>Chính sách</span>
                 </Link>
                 <br />

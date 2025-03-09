@@ -1,20 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
+import { RouterProvider } from "react-router";
+import Router from "./routes/Router";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastProvider } from "./config/toastConfig";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-    ,
+const queryClient = new QueryClient();
+
+createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={Router} />
+      <ToastProvider />
+    </QueryClientProvider>
+  </Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

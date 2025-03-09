@@ -10,7 +10,7 @@ body header.main_header {
     background-color: #101739;
 }
 
-#main_header .div_module{
+#main_header .div_module {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +33,7 @@ body header.main_header {
     letter-spacing: 1px;
 }
 
-#main_header .left .logo img {
+#main_header .left .logo a img {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,7 +97,6 @@ body header.main_header {
     border: 2px solid #6C74FC;
     background-color: transparent;
     color: #fff;
-    cursor: pointer;
     border-radius: 150px;
     font-size: 15px;
     position: relative;
