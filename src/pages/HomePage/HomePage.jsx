@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import FooterComponent from "../../components/FooterComponent/FooterComponent";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import "./homePageStyle.css";
 import { Pagination } from "antd";
+import { useQuery } from "react-query";
+import albumService from "../../services/albumService";
 
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
@@ -11,6 +13,31 @@ import slider3 from "../../assets/images/slider3.jpg";
 import { PiStarHalf } from "react-icons/pi";
 
 export default function HomePage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const getAllAlbums = async (page = 1, pageSize = 10) => {
+    const res = await albumService.getAllAlbum({
+      page: page,
+      pageSize: pageSize,
+    });
+    return res.data;
+  };
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["albums", currentPage],
+    queryFn: () => getAllAlbums(currentPage, pageSize),
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
+  const albums = data?.albums || [];
+  const totalAlbums = data?.total || 0;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <div className="div_module">
@@ -32,8 +59,28 @@ export default function HomePage() {
                 </p>
               </h1>
             </div>
+            <div className="lst_album">
+              {isLoading ? (
+                <div>Loading...</div>
+              ) : isError ? (
+                <div>Error fetching albums</div>
+              ) : (
+                albums.map((album) => (
+                  <div key={album._id} className="album-item">
+                    <h3>{album.title}</h3>
+                    <p>{album.artist}</p>
+                  </div>
+                ))
+              )}
+            </div>
             <div className="page_redirect">
-              <Pagination align="center" defaultCurrent={1} total={50} />
+              <Pagination
+                align="center"
+                current={currentPage}
+                total={totalAlbums}
+                pageSize={pageSize}
+                onChange={handlePageChange}
+              />
             </div>
           </div>
           <div className="right">
