@@ -17,7 +17,7 @@ export default function HomePage() {
         <div id="content">
           <div className="left">
             <div className="pr_image g_income_div">
-              <SliderComponent arrImages={[slider1, slider2, slider3]} />
+              <SliderComponent arrImages={[slider1, slider2, slider3]}/>
             </div>
             <div className="album_suggest">
               <h1>

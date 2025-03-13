@@ -33,7 +33,6 @@ export default function UserPassword() {
     }
   })  
 
-
   const handleChange=(e)=>{
     const {name,value}=e.target
     setNewPassword((data)=>({
@@ -43,17 +42,25 @@ export default function UserPassword() {
   }
   const handleSubmit=(e)=>{
     e.preventDefault()
+    if(newPassword.newpass !== newPassword.verifypass){
+      alert("xác nhận mật khẩu không trùng")
+      return;
+    }
+    if(newPassword.newpass.length<8){
+      alert("cần ít nhất 8 kí tự")
+      return;
+    }
     mutation.mutate(newPassword)
   }
 
   return (
     <div className='password-container'>
       <form onSubmit={handleSubmit}>
-        <p>Mật khẩu cũ</p>
+        <p>Mật khẩu cũ * </p>
         <input type="text" name="oldpass" value={newPassword.oldpass} onChange={handleChange} />
-        <p>Mật khẩu mới</p>
+        <p>Mật khẩu mới *</p>
         <input type="text" name="newpass" value={newPassword.newpass} autoComplete='new-password' onChange={handleChange} />
-        <p>Xác nhận lại mật khẩu mới</p>
+        <p>Xác nhận lại mật khẩu mới *</p>
         <input type="text" name="verifypass" value={newPassword.verifypass} autoComplete='new-password' onChange={handleChange} />
         <button className="update-password">Cập nhật</button>
       </form>
