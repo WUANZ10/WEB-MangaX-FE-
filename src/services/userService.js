@@ -1,5 +1,8 @@
 import axios from "axios";
-import { handleAxiosError, validateRequiredFields } from "../utils/validationErr";
+import {
+  handleAxiosError,
+  validateRequiredFields,
+} from "../utils/validationErr";
 
 const userService = {
   registerUser: async (data) => {
@@ -34,6 +37,11 @@ const userService = {
         `${process.env.REACT_APP_API_URL}/user/login`,
         data
       );
+
+      if (res.data.data.userId) {
+        localStorage.setItem("userId", res.data.data.userId);
+      }
+
       return res.data;
     } catch (error) {
       handleAxiosError(error);
