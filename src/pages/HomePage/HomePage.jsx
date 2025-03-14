@@ -12,7 +12,10 @@ import slider3 from "../../assets/images/slider3.jpg";
 
 import { PiStarHalf } from "react-icons/pi";
 
+import ComicButton from "./Album/Album.jsx"
+
 export default function HomePage() {
+
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
@@ -21,6 +24,7 @@ export default function HomePage() {
       page: page,
       pageSize: pageSize,
     });
+    console.log(res)
     return res.data;
   };
 
@@ -51,7 +55,7 @@ export default function HomePage() {
                 <p>
                   <PiStarHalf color="white" fontSize={18} />
                   <text
-                    className="text_smart_suggest"
+                    className="text_smart_suggest unselectable"
                     placeholder="Gợi ý thông minh"
                   >
                     Gợi ý thông minh
@@ -61,15 +65,12 @@ export default function HomePage() {
             </div>
             <div className="lst_album">
               {isLoading ? (
-                <div>Loading...</div>
+                <div className="unselectable">Loading...</div>
               ) : isError ? (
-                <div>Error fetching albums</div>
+                <div className="unselectable">Error fetching albums</div>
               ) : (
                 albums.map((album) => (
-                  <div key={album._id} className="album-item">
-                    <h3>{album.title}</h3>
-                    <p>{album.artist}</p>
-                  </div>
+                  <ComicButton album={album}/>
                 ))
               )}
             </div>
@@ -86,10 +87,10 @@ export default function HomePage() {
           <div className="right">
             <div className="app">
               <img src="https://cmangax.com/assets/img/premium.png" alt="" />
-              <p>
+              <p className="unselectable">
                 Thành viên VIP
                 <br />
-                <span>Đọc truyện không quảng cáo</span>
+                <span className="unselectable">Đọc truyện không quảng cáo</span>
               </p>
             </div>
           </div>

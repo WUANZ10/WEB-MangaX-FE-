@@ -40,9 +40,9 @@ export default function ComicPage() {
 
         {/* Hàng TAG (trước đây là statsdiv với flex:4) */}
         <div className="tags-row">
-          <p className="p white tag">Example Tag</p>
-          <p className="p white tag">Horror</p>
-          <p className="p white tag">Comedy</p>
+          <p className="p white tag unselectable">Example Tag</p>
+          <p className="p white tag unselectable">Horror</p>
+          <p className="p white tag unselectable">Comedy</p>
         </div>
 
         {/* Hàng STATS (trước đây là statsdiv với flex:20) */}
@@ -90,31 +90,31 @@ export default function ComicPage() {
           <button className="button read-btn">
             <div className="button-inner">
             <FaBook />
-              <p className="p button-text">Read from Beginning</p>
+              <p className="p button-text unselectable">Read from Beginning</p>
             </div>
           </button>
           <button className="button">
             <div className="button-inner">
             <IoBookmarkSharp />
-              <p className="p button-text">Favorite</p>
+              <p className="p button-text unselectable">Favorite</p>
             </div>
           </button>
           <button className="button">
             <div className="button-inner">
             <FaShare />
-              <p className="p button-text">Share</p>
+              <p className="p button-text unselectable">Share</p>
             </div>
           </button>
           <button className="button">
             <div className="button-inner">
             <MdReport />
-              <p className="p button-text">Report</p>
+              <p className="p button-text unselectable">Report</p>
             </div>
           </button>
           <button className="button">
             <div className="button-inner">
             <RiImageEditFill />
-              <p className="p button-text">Edit</p>
+              <p className="p button-text unselectable">Edit</p>
             </div>
           </button>
         </div>
@@ -125,7 +125,7 @@ export default function ComicPage() {
     <div className="description-block">
       <div className="desc-header">
       <RiInformation2Fill />
-        <h1 className="white desc-title">Description</h1>
+        <h1 className="white desc-title unselectable">Description</h1>
       </div>
       <p className="p desc-content">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas leo eu nunc luctus, in laoreet libero venenatis. Duis eget finibus odio. Cras facilisis hendrerit mi, quis luctus lacus tempus et...
@@ -134,7 +134,7 @@ export default function ComicPage() {
 
     {/* ----- CHAPTERS SECTION ----- */}
     <div className="chapters-wrapper">
-      <h1 className="white chapters-title">Chapters</h1>
+      <h1 className="white chapters-title unselectable">Chapters</h1>
       <div className="chapters-box">
         {/* Row trên: 2 khối (left 9, right 1) */}
         <div className="chapter-top-row">
@@ -185,7 +185,7 @@ export default function ComicPage() {
 
     {/* ----- COMMENTS SECTION ----- */}
     <div className="comments-wrapper">
-      <h1 className="white comments-title">Comments</h1>
+      <h1 className="white comments-title unselectable">Comments</h1>
       <div className="comments-box">
         {/* Row trên: 2 khối (left 9, right 1) */}
         <div className="comments-top-row">
