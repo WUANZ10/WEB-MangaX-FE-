@@ -29,11 +29,11 @@ export default function LoginComponent({ onLoginSuccess }) {
       { email, password },
       {
         onSuccess: (response) => {
-          const { accessToken } = response.data;
-          localStorage.setItem("accessToken", accessToken);
+          const { access_token } = response.data;
+          localStorage.setItem("accessToken", access_token);
           showSuccessToast("Đăng nhập thành công!");
           onLoginSuccess();
-          navigate("/profile");
+          navigate("/home");
         },
         onError: (error) => {
           showErrorToast(`Đăng nhập thất bại: ${error.message}`);
