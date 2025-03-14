@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./comicPageStyle.css";
 import { FaBook, FaBookOpenReader, FaMagnifyingGlass, FaShare } from "react-icons/fa6";
 import { IoBookmarkSharp, IoEyeSharp, IoStar } from "react-icons/io5";
 import { RiImageEditFill, RiInformation2Fill } from "react-icons/ri";
 import { MdReport } from "react-icons/md";
+import axios from "axios";
 
 export default function ComicPage() {
+  const [pageData, setPageData] = useState([]);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      const path = window.location.pathname;
+      const id = path.split('/').pop();
+      console.log(id)
+      try {
+        const response2 = await axios.get(`${process.env.REACT_APP_API_URL}/album/getAllAlbum`);
+        console.log(response2.data)
+        axios.get(`${process.env.REACT_APP_API_URL}/album/detailedAlbum/${id}`)
+          .then(response => console.log(response.data))
+          .catch(error => console.error("Error:", error.response?.data || error.message));
+      } catch (err) {
+        console.error('Error fetching item:', err);
+      }
+    };
+
+    fetchItem();
+  }, []);
   return (
     <div id="content">
     {/* ----- TOP SECTION: LOGO + INFO ----- */}
