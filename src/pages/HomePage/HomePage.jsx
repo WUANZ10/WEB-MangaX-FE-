@@ -5,6 +5,7 @@ import "./homePageStyle.css";
 import { Pagination } from "antd";
 import { useQuery } from "react-query";
 import albumService from "../../services/albumService";
+import { useNavigate } from "react-router-dom";
 
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
@@ -38,6 +39,10 @@ export default function HomePage() {
     setCurrentPage(page);
   };
 
+  const handleAlbumClick = (albumId) => {
+    navigate(`/album/${albumId}`);
+  };
+
   return (
     <>
       <div className="div_module">
@@ -66,7 +71,11 @@ export default function HomePage() {
                 <div>Error fetching albums</div>
               ) : (
                 albums.map((album) => (
-                  <div key={album._id} className="album-item">
+                  <div
+                    key={album._id}
+                    className="album_item"
+                    onClick={() => handleAlbumClick(album._id)}
+                  >
                     <h3>{album.title}</h3>
                     <p>{album.artist}</p>
                   </div>

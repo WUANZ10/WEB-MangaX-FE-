@@ -25,6 +25,19 @@ const albumService = {
       throw new Error("Failed to fetch albums: " + error.message);
     }
   },
+
+  detailedAlbum: async (albumId) => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/album/detailedAlbum/${albumId}`
+      );
+
+      return res.data;
+    } catch (error) {
+      handleAxiosError(error);
+      throw new Error("Failed to fetch album details: " + error.message);
+    }
+  },
 };
 
 export default albumService;
