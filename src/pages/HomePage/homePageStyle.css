@@ -135,6 +135,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-evenly;
     outline: none;
     background-color: transparent;
     border: none;
@@ -142,7 +143,7 @@
 }
 
 .album-name {
-    font-size: 18px;
+    font-size: 2.5vmin;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -161,18 +162,20 @@
     background-color: #151D35;
     padding: 1vmin 2vmin;
     border-radius: 2vmin;
-    transform: translate(-1vmin,-1vmin);
     transition-duration: 0.2s;
     max-width: none;
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
     user-select: text;
-
 }
+
 .album-logo {
     width: 75%;
     aspect-ratio: 0.9;
+    object-fit: cover;
+    border: 2px solid #2D334F;
+    border-radius: 8px;
 }
 
 .stats-row {
@@ -185,6 +188,10 @@
 .p {
     font-size: 2vmin;
     text-overflow: ellipsis;
+  }
+
+  .icon {
+    font-size: 2vmin;
   }
 
   /* Mỗi cột Stats: width:30%, display:flex */
