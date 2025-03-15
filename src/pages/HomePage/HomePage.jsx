@@ -40,7 +40,7 @@ export default function HomePage() {
   };
 
   // const handleAlbumClick = (albumId) => {
-  //   navigate(`/album/${albumId}`);
+  //   navigate(`/comic/${albumId}`);
   // };
 
   return (
