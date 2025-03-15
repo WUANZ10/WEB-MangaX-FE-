@@ -1,18 +1,9 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import {
-  BookHeart,
-  FileClock,
-  PanelLeftClose,
-  PanelRightClose,
-  ScrollText,
-  User,
-  UserCog,
-} from "lucide-react";
-import UserProfile from "./Menu profile/UserProfile";
-import UserPassword from "./Menu profile/UserPassword";
-import Email from "./Menu profile/Email";
-import Comic from "./Menu profile/Comic";
+import { BookHeart, FileClock, PanelLeftClose, PanelRightClose, ScrollText, User, UserCog } from "lucide-react";
+import UserProfile from './Menu profile/UserProfile'
+import UserPassword from './Menu profile/UserPassword'
+import Comic from './Menu profile/Comic'
 export default function Profile() {
   const [aside, setAside] = useState("");
   const [moveContent, setMoveContent] = useState("");
@@ -78,20 +69,17 @@ export default function Profile() {
               </span>
               Cài đặt
             </p>
-            <ul className={moreSetting}>
-              <li
-                className="option extra-op"
-                onClick={() => setOptionMenu(<Email />)}
-              >
-                Email
-              </li>
-              <li
-                className="option extra-op"
-                onClick={() => setOptionMenu(<UserPassword />)}
-              >
-                Thay đổi mật khẩu
-              </li>
-            </ul>
+            <div className="setting">
+              <p className="option" onClick={()=>openMore("open-more-op")}>
+                <span className="icon">
+                  <UserCog />
+                </span>
+                Cài đặt
+              </p>
+              <ul className={moreSetting}>
+                <li className="option extra-op" onClick={()=>setOptionMenu(<UserPassword/>)}>Thay đổi mật khẩu</li>
+              </ul>
+            </div>
           </div>
         </div>
         {aside === "open-aside" ? (

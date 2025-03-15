@@ -14,6 +14,8 @@ import slider3 from "../../assets/images/slider3.jpg";
 import { PiStarHalf } from "react-icons/pi";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
@@ -39,9 +41,9 @@ export default function HomePage() {
     setCurrentPage(page);
   };
 
-  // const handleAlbumClick = (albumId) => {
-  //   navigate(`/comic/${albumId}`);
-  // };
+  const handleAlbumClick = (albumId) => {
+    navigate(`/comic/${albumId}`);
+  };
 
   return (
     <>
@@ -74,7 +76,7 @@ export default function HomePage() {
                   <div
                     key={album._id}
                     className="album_item"
-                    // onClick={() => handleAlbumClick(album._id)}
+                    onClick={() => handleAlbumClick(album._id)}
                   >
                     <h3>{album.title}</h3>
                     <p>{album.artist}</p>
