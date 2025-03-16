@@ -178,7 +178,7 @@
     border-radius: 8px;
 }
 
-.stats-row {
+#content .stats-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
