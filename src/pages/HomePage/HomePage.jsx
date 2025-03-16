@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FooterComponent from "../../components/FooterComponent/FooterComponent";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
-import "./homePageStyle.css";
 import { Pagination } from "antd";
 import { useQuery } from "react-query";
 import albumService from "../../services/albumService";
@@ -42,8 +41,24 @@ export default function HomePage() {
     setCurrentPage(page);
   };
 
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "./homePageStyle.css";
+    link.id = "dynamic-css";
+
+    document.head.appendChild(link);
+
+    return () => {
+      const existingLink = document.getElementById("dynamic-css");
+      if (existingLink) {
+        existingLink.remove();
+      }
+    };
+  }, []);
+
   return (
-    <>
+    <div>
       <div className="div_module">
         <div id="content">
           <div className="left">
@@ -97,6 +112,6 @@ export default function HomePage() {
         </div>
       </div>
       <FooterComponent />
-    </>
+    </div>
   );
 }

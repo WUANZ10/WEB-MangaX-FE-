@@ -1,7 +1,7 @@
 /*************************************************/
 /* 1) KHỐI #content - cột, giống inline-style gốc */
 /*************************************************/
-#content {
+#comic_content {
   display: flex;
   flex-direction: column;
   margin: 20px auto;
@@ -61,10 +61,10 @@
   margin: 5px 0;
 }
 
-.tags-row .tag {
+.tag {
   padding: 3px 9px;
   border: 2.2px solid #77D172;
-  border-radius: 1000000000px;
+  border-radius: 1000px;
   background-color: #39761D;
   font-weight: 600;
   font-size: 14px;
@@ -257,6 +257,8 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  border: 0;
+  color: #CCC6FE;
 }
 
 .chapter-item-ladiv {
@@ -267,6 +269,8 @@
 .chapter-item-title {
   margin-bottom: 0;
   font-size: 18.75px;
+  width: 100%;
+  text-align: left;
 }
 .chapter-item-desc {
   font-size: 17.1875px;
