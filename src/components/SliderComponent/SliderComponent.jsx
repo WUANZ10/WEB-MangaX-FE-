@@ -20,7 +20,6 @@ export default function SliderComponent({ arrImages }) {
               <img
                 src={image}
                 alt="slider"
-                preview={false}
                 width="100%"
                 height="200px"
               />

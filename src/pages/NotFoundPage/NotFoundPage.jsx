@@ -10,7 +10,7 @@ export default function NotFoundPage() {
           <h1>404</h1>
         </div>
         <div className="contant_box_404">
-          <h2>Nội dung không tồn tại!</h2>
+          <h2 >Nội dung không tồn tại!</h2>
           <p>Có vẻ nội dung này đã bị xóa.</p>
           <Link to="/" className="link_404">
             Trở về trang chủ
