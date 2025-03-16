@@ -30,7 +30,7 @@ export default function ComicPage() {
   }
   return (
     <>
-      <div id="content">
+      <div id="content_comic">
         {/* ----- TOP SECTION: LOGO + INFO ----- */}
         <div className="top-section">
           <div className="ladiv">

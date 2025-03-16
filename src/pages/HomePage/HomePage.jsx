@@ -5,7 +5,7 @@ import "./homePageStyle.css";
 import { Pagination } from "antd";
 import { useQuery } from "react-query";
 import albumService from "../../services/albumService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
@@ -15,21 +15,25 @@ import { PiStarHalf } from "react-icons/pi";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchTerm = queryParams.get("search") || ""; 
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
-  const getAllAlbums = async (page = 1, pageSize = 10) => {
+  const getAllAlbums = async (page = 1, pageSize = 10, keyword = "") => {
     const res = await albumService.getAllAlbum({
       page: page,
       pageSize: pageSize,
+      keyword: keyword,
     });
     return res.data;
   };
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["albums", currentPage],
-    queryFn: () => getAllAlbums(currentPage, pageSize),
+    queryKey: ["albums", currentPage, searchTerm],
+    queryFn: () => getAllAlbums(currentPage, pageSize, searchTerm),
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
@@ -71,6 +75,10 @@ export default function HomePage() {
                 <div>Loading...</div>
               ) : isError ? (
                 <div>Error fetching albums</div>
+              ) : albums.length === 0 ? (
+                <div>
+                  Không có truyện nào phù hợp với từ khóa "{searchTerm}"
+                </div>
               ) : (
                 albums.map((album) => (
                   <div

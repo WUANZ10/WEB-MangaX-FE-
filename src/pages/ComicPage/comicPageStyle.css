@@ -1,7 +1,7 @@
 /*************************************************/
 /* 1) KHỐI #content - cột, giống inline-style gốc */
 /*************************************************/
-#content {
+#content_comic {
   display: flex;
   flex-direction: column;
   margin: 20px auto;
