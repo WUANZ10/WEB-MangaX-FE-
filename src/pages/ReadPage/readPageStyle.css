@@ -1,7 +1,7 @@
 /*************************************************/
 /* 1) KHỐI #content - cột, giống inline-style gốc */
 /*************************************************/
-#content {
+#read_content {
   display: flex;
   flex-direction: column;
   margin: 20px auto;
@@ -74,6 +74,7 @@
   color: white;
 }
 
+
 .center {
   text-align: center;
 }
@@ -90,12 +91,12 @@
   flex: 1;
 }
 
-.left {
+.left--modifier {
   display: flex;
   justify-content: flex-start;
 }
 
-.right {
+.right--modifier {
   display: flex;
   justify-content: flex-end;
 }
