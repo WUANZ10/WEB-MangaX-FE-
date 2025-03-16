@@ -41,8 +41,9 @@ export default function HeaderComponent() {
             </div>
             <div className="search input_screen pc_display">
               <input
-                className="text_album_find"
+                className="text_album_find unselectable"
                 placeholder="Bạn muốn tìm truyện gì"
+                
               />
               <button>
                 <CiSearch style={{ fontSize: 24, cursor: "pointer" }} />
@@ -53,7 +54,7 @@ export default function HeaderComponent() {
           <div className="right">
             <div className="button_style">
               <button
-                className="pc_display text_button_register"
+                className="pc_display text_button_register unselectable"
                 onClick={() => openModal("register")}
               >
                 Đăng ký
@@ -61,7 +62,7 @@ export default function HeaderComponent() {
               <div className="box">
                 <span className="border-line" />
                 <button
-                  className="text_button_login"
+                  className="text_button_login unselectable"
                   onClick={() => openModal("login")}
                 >
                   Đăng nhập

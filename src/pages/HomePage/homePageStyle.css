@@ -115,3 +115,112 @@
     line-height: 18px;
     color: #999;
 }
+
+.lst_album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.album-item-wrapper {
+    width: 33.33333%;
+    min-width: 30vmin;
+    display: flex;
+    justify-content: center;
+}
+
+.album-item {
+    aspect-ratio: 3/4;
+    max-height: 35vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color:#CCCEE3;
+}
+
+.album-name {
+    font-size: 2.5vmin;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    transition-duration: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.album-name:hover {
+    color: white;
+    width: fit-content;
+    z-index: 1;
+    background-color: #151D35;
+    padding: 1vmin 2vmin;
+    border-radius: 2vmin;
+    transition-duration: 0.2s;
+    max-width: none;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.album-logo {
+    width: 75%;
+    aspect-ratio: 0.9;
+    object-fit: cover;
+    border: 2px solid #2D334F;
+    border-radius: 8px;
+}
+
+.stats-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.p {
+    font-size: 2vmin;
+    text-overflow: ellipsis;
+  }
+
+  .icon {
+    font-size: 2vmin;
+  }
+
+  /* Mỗi cột Stats: width:30%, display:flex */
+  .stats-column {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 0.5vmin;
+  }
+  
+  /* Bên trái cột (icon + label) */
+  .stats-column-left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+  }
+  .stats-column-left svg{
+    font-size: 18px;
+    margin-right: 5px;
+  }
+  .label {
+    flex: 1;
+    margin-left: 5px;
+  }
+  
+  .stats-column-right {
+    width: 50%;
+  }
+  .value {
+    width: 100%;
+    font-weight: 450;
+  }
