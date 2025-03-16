@@ -33,7 +33,7 @@ export default function LoginComponent({ onLoginSuccess }) {
           localStorage.setItem("accessToken", access_token);
           showSuccessToast("Đăng nhập thành công!");
           onLoginSuccess();
-          navigate("/profile");
+          navigate("/home");
         },
         onError: (error) => {
           showErrorToast(`Đăng nhập thất bại: ${error.message}`);

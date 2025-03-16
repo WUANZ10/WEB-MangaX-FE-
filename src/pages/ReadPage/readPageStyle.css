@@ -1,0 +1,131 @@
+/*************************************************/
+/* 1) KHỐI #content - cột, giống inline-style gốc */
+/*************************************************/
+#content {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  border-radius: 8px;
+  background-color: #101739;
+  padding: 20px;
+  width: 90%;
+  gap: 25px;
+  justify-content: center;
+}
+
+/*********************/
+/* 2) TOP SECTION    */
+/*********************/
+
+.top-section {
+  width: 100%;
+  display: flex; /* Nằm ngang: ladiv + info-section */
+}
+
+.ladiv {
+  width: 20%;
+  aspect-ratio: 0.75;
+  border-radius: 8px;
+  border: 2px solid #2d334f;
+  overflow: hidden; /* nếu muốn ảnh không tràn */
+}
+
+/* Khối info bên phải */
+.info-section {
+  flex: 1;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+/* Tiêu đề Comic */
+.comic-title {
+  margin-bottom: 0;
+  font-size: 30px; /* thay cho inline-style */
+}
+
+/* Tên Artist */
+.artist-name {
+  font-weight: 450;
+  font-size: 18.75px;
+  margin: 3px 0; 
+}
+
+/*********************************/
+/* 3) MIDDLE & BOTTOM SECTION    */
+/*********************************/
+.navbar {
+  border-bottom: 1px solid #1F2955;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 2px;
+}
+
+.no-style {
+  outline: none;
+  border: 0;
+  background-color: rgba(205, 0, 0, 0);
+}
+
+
+
+
+
+.page-holder {
+  align-self: center;
+  max-width: 70%;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+}
+
+.page {
+  width: 100%;
+  display: block;
+}
+
+
+/*************************************************/
+/* 6) ICON & TEXT (p, white) (giữ nguyên)        */
+/*************************************************/
+.icon {
+  aspect-ratio: 1;
+  color: white;
+  /* height: 100%; */
+}
+
+.p {
+  font-size: 1vw;
+  text-overflow: ellipsis;
+}
+
+.white {
+  color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+.normal {
+  font-weight: 450;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}

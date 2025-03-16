@@ -7,6 +7,7 @@ const HomePage = lazy(() => import("../pages/HomePage/HomePage"))
 const NotFound = lazy(() => import("../pages/NotFoundPage/NotFoundPage"))
 const Profile = lazy(() => import("../pages/ProfilePage/Profile"))
 const Comic = lazy(() => import("../pages/ComicPage/ComicPage"))
+const Read = lazy(() => import("../pages/ReadPage/ReadPage"))
 
 const Router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const Router = createBrowserRouter([
       {
         path: 'comic',
         element: <Comic />
+      },
+      {
+        path: 'read',
+        element: <Read />
       },
       {
         path: '',
