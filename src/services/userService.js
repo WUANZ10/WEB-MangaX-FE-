@@ -1,30 +1,52 @@
 import axios from "axios";
+import {
+  handleAxiosError,
+  validateRequiredFields,
+} from "../utils/validationErr";
 
-export const loginUser = async (data) => {
-  console.log(`${process.env.REACT_APP_API_URL}/user/login`)
-  try {
-    if (!data || !data.email || !data.password) {
-      throw new Error("Email and password are required.");
-    }
+const userService = {
+  registerUser: async (data) => {
+    try {
+      validateRequiredFields(data, ["email", "password", "username"]);
 
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/user/login`,
-      data
-    );
-    
+      if (data.password !== data.confirmPassword) {
+        throw new Error("Passwords do not match.");
+      }
 
-    return res.data;
-  } catch (error) {
-    if (error.response) {
-      const errorMessage =
-        error.response.data.message || "Login failed. Please try again.";
-      throw new Error(errorMessage);
-    } else if (error.request) {
-      throw new Error(
-        "Unable to connect to the server. Please try again later."
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/register`,
+        {
+          email: data.email,
+          password: data.password,
+          confirmPassword: data.confirmPassword,
+          username: data.username,
+        }
       );
-    } else {
-      throw new Error("An error occurred. Please try again.");
+
+      return res.data;
+    } catch (error) {
+      handleAxiosError(error);
     }
-  }
+  },
+
+  loginUser: async (data) => {
+    try {
+      validateRequiredFields(data, ["email", "password"]);
+
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/login`,
+        data
+      );
+
+      if (res.data.data.userId) {
+        localStorage.setItem("userId", res.data.data.userId);
+      }
+
+      return res.data;
+    } catch (error) {
+      handleAxiosError(error);
+    }
+  },
 };
+
+export default userService;

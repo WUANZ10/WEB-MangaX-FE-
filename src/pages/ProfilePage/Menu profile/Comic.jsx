@@ -2,8 +2,16 @@ import { Bookmark, CircleStop, Eye } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 export default function Comic(props) {
-  const [textTitle, setTextTile] = useState("");
-  useEffect(() => {
+  const [textTitle,setTextTile]=useState('')
+  const [dataComic,setDataComic]=useState([
+    {
+      story_name:'',
+      chapter:0,
+      story_image:'',
+      chapter_list:'',
+    }
+  ])
+  useEffect(()=>{
     switch (props.type) {
       case "follower":
         setTextTile("theo dõi");
@@ -17,6 +25,7 @@ export default function Comic(props) {
     }
   }, [props.type]);
   console.log(props);
+
   return (
     <div className="comic-container">
       <div className="header-list">

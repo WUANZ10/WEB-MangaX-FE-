@@ -9,23 +9,21 @@ export default function SliderComponent({ arrImages }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
   };
   return (
     <div>
       <Slider {...settings}>
         {arrImages.map((image, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <img
-                key={index}
                 src={image}
                 alt="slider"
-                preview={false}
                 width="100%"
                 height="200px"
               />
-            </>
+            </React.Fragment>
           );
         })}
       </Slider>

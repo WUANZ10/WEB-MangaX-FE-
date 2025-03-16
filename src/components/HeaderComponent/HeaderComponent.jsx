@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import "./headerStyle.css";
 import { CiSearch } from "react-icons/ci";
@@ -7,6 +7,8 @@ import { CiSearch } from "react-icons/ci";
 export default function HeaderComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState("login");
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const openModal = (component) => {
     setActiveComponent(component);
@@ -16,6 +18,23 @@ export default function HeaderComponent() {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const handleRegisterSuccess = () => {
+    setActiveComponent("login");
+  };
+
+  const handleLoginSuccess = () => {
+    closeModal();
+  };
+
+  useEffect(() => {
+    if (searchTerm.trim() !== "") {
+      navigate(`/home?search=${searchTerm}`);
+    } else {
+      navigate("/home");
+    }
+  }, [searchTerm, navigate]);
+
   return (
     <div id="main_header">
       <header className="main_header">
@@ -31,13 +50,17 @@ export default function HeaderComponent() {
               </Link>
             </div>
             <div className="search input_screen pc_display">
-              <input
-                className="text_album_find"
-                placeholder="Bạn muốn tìm truyện gì"
-              />
-              <button>
-                <CiSearch style={{ fontSize: 24, cursor: "pointer" }} />
-              </button>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <input
+                  className="text_album_find"
+                  placeholder="Bạn muốn tìm truyện gì"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit">
+                  <CiSearch style={{ fontSize: 24, cursor: "pointer" }} />
+                </button>
+              </form>
               <div className="search_result" style={{ display: "none" }}></div>
             </div>
           </div>
@@ -63,6 +86,8 @@ export default function HeaderComponent() {
               isOpen={isOpen}
               closeModal={closeModal}
               activeComponent={activeComponent}
+              onRegisterSuccess={handleRegisterSuccess}
+              onLoginSuccess={handleLoginSuccess}
             />
           </div>
         </div>

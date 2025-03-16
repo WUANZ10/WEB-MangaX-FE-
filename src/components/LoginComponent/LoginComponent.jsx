@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./loginStyle.css";
-import * as userService from "../../services/userService";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
+import userService from "../../services/userService";
+import { showSuccessToast, showErrorToast } from "../../config/toastConfig";
+import "./loginStyle.css";
 
-export default function LoginComponent() {
+export default function LoginComponent({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const mutation = useMutationHooks((data) => userService.loginUser(data));
-  const { isLoading, isError, error, isSuccess, data } = mutation;
+  const navigate = useNavigate();
 
-  console.log(mutation)
+  const mutation = useMutationHooks((data) => userService.loginUser(data));
+  const { isLoading } = mutation;
+
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -23,7 +25,21 @@ export default function LoginComponent() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    mutation.mutate({ email, password });
+    mutation.mutate(
+      { email, password },
+      {
+        onSuccess: (response) => {
+          const { access_token } = response.data;
+          localStorage.setItem("accessToken", access_token);
+          showSuccessToast("Đăng nhập thành công!");
+          onLoginSuccess();
+          navigate("/home");
+        },
+        onError: (error) => {
+          showErrorToast(`Đăng nhập thất bại: ${error.message}`);
+        },
+      }
+    );
   };
 
   return (
@@ -32,11 +48,10 @@ export default function LoginComponent() {
         <div className="input_screen">
           <ul className="form">
             <li>
-              <p className="label text_email_or_username">
-                Tên đăng nhập hoặc email
-              </p>
+              <p className="label text_email_or_username">Email</p>
               <input
                 id="login_username"
+                type="email"
                 value={email}
                 onChange={handleOnChangeEmail}
                 required
@@ -46,8 +61,8 @@ export default function LoginComponent() {
             <li>
               <p className="label text_password">Mật khẩu</p>
               <input
-                type="password"
                 id="login_password"
+                type="password"
                 value={password}
                 onChange={handleOnChangePassword}
                 required
@@ -69,16 +84,6 @@ export default function LoginComponent() {
             </button>
           </div>
         </LoadingComponent>
-        {isError && (
-          <div className="error_message">
-            Đăng nhập thất bại: {error.message}
-          </div>
-        )}
-        {isSuccess && (
-          <div className="success_message">
-            Đăng nhập thành công: {data.message}
-          </div>
-        )}
         <div className="other_login">
           <div className="title">
             <p className="text_or">Hoặc</p>
