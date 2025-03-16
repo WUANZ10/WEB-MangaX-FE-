@@ -5,6 +5,7 @@ import "./homePageStyle.css";
 import { Pagination } from "antd";
 import { useQuery } from "react-query";
 import albumService from "../../services/albumService";
+import { useNavigate } from "react-router-dom";
 
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
@@ -15,6 +16,7 @@ import { PiStarHalf } from "react-icons/pi";
 import ComicButton from "./Album/Album.jsx"
 
 export default function HomePage() {
+  const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
@@ -24,7 +26,6 @@ export default function HomePage() {
       page: page,
       pageSize: pageSize,
     });
-    console.log(res)
     return res.data;
   };
 
@@ -40,6 +41,10 @@ export default function HomePage() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleAlbumClick = (albumId) => {
+    navigate(`/comic/${albumId}`);
   };
 
   return (
@@ -65,12 +70,19 @@ export default function HomePage() {
             </div>
             <div className="lst_album">
               {isLoading ? (
-                <div className="unselectable">Loading...</div>
+                <div>Loading...</div>
               ) : isError ? (
-                <div className="unselectable">Error fetching albums</div>
+                <div>Error fetching albums</div>
               ) : (
                 albums.map((album) => (
-                  <ComicButton album={album}/>
+                  <div
+                    key={album._id}
+                    className="album_item"
+                    onClick={() => handleAlbumClick(album._id)}
+                  >
+                    <h3>{album.title}</h3>
+                    <p>{album.artist}</p>
+                  </div>
                 ))
               )}
             </div>
