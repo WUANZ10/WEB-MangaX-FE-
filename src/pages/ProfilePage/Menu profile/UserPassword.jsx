@@ -10,11 +10,18 @@ export default function UserPassword() {
     verifypass:''
   })
   const fetchChangePass=async(dataPass)=>{
-    try{
-      const response=await axios.put('http://localhost:3001/api/user/change-pass',dataPass)
-      return response
-    }catch(error){
-      throw error
+    const token=localStorage.getItem('accessToken')
+    if(token){
+      try{
+        const response=await axios.put(`http://localhost:3001/api/user/change-pass/${newPassword._id}`,dataPass,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        })
+        return response
+      }catch(error){
+        return error
+      }
     }
   }
   const mutation=useMutation(fetchChangePass,{

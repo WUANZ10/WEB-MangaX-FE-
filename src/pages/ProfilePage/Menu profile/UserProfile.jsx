@@ -3,13 +3,16 @@ import "./Menuprofile.css";
 import { Pencil } from "lucide-react";
 import axios from 'axios'
 import { useMutation, useQuery } from "react-query";
+import { showErrorToast, showSuccessToast } from "../../../config/toastConfig";
 export default function UserProfile() {
+  const [usertoken,setUserToken]=useState('')
   const [userInput, setUserInput] = useState({
     _id: '67b48c0ff95f9f6eba206373',
     avatar: '',
     username: "",
     introduce: ''
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setUserInput((data) => ({
@@ -22,35 +25,50 @@ export default function UserProfile() {
     return response.data.data
   }
   const fetchUpdateUser = async (userInput) => {
-    if(userInput.username.length>15){
+    if (userInput.username.length > 15) {
       throw new Error('Ko được quá 15 từ')
     }
-    const response = await axios.put('http://localhost:3001/api/user/update-user', userInput)
+    const response = await axios.put(`http://localhost:3001/api/user/updateUser/${userInput._id}`, 
+    userInput,
+    {
+      headers:{
+        Authorization: `Bearer ${usertoken}`
+      },
+  })
     return response.data.data
   }
 
-  const mutation=useMutation(fetchUpdateUser,{
-    onSuccess:(data)=>{
-      alert('Success Update')
+  const mutation = useMutation(fetchUpdateUser, {
+    onSuccess: (data) => {
+      showSuccessToast('Update thành công')
       console.log(data)
     },
-    onError:(error)=>{
-      alert(error.message)
+    onError: (error) => {
+      showErrorToast(`Update thất bại: ${error.message}`);
     }
   })
 
-  const SubmitUpdate=(e)=>{
+  const SubmitUpdate = (e) => {
     e.preventDefault()
     mutation.mutate(userInput)
   }
 
-  const { data: user, isLoading, error:getError } = useQuery(
+  const { data: user, isLoading, error: getError } = useQuery(
     ['user', userInput._id],
     () => fetchUserById(userInput._id),
-    { enabled: userInput._id !== '' }
+    {
+      enabled: userInput._id !== '',
+      onSuccess: (user) => {
+        const token=localStorage.getItem('accessToken')
+        if(token){
+          setUserToken(token)
+        }
+      },
+      staleTime: 1000 * 60 * 5  // trong vòng 2p ko refetch lại khi đổi tab
+    } 
   )
 
-  if(getError){
+  if (getError) {
     alert('Error user data')
   }
 
