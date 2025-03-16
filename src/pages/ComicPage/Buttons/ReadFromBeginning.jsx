@@ -8,6 +8,7 @@ export function ReadFromBeginning({ comicId }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     navigate(`/read/${comicId}/0`);
   };
 
