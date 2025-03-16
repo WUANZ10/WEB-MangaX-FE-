@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./readPageStyle.css";
-import { FaBook, FaBookOpenReader, FaMagnifyingGlass, FaShare } from "react-icons/fa6";
-import { IoBookmarkSharp, IoEyeSharp, IoStar } from "react-icons/io5";
-import { RiImageEditFill, RiInformation2Fill } from "react-icons/ri";
-import { MdReport } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function ReadPage() {
+  let [album, setAlbum] = useState({})
+  const id = useParams()
+  useEffect(() => {
+
+    const fetchItem = async () => {
+      try {
+        axios.get(`${process.env.REACT_APP_API_URL}/album/detailedAlbum/${id.comicId}`)
+          .then((response) => 
+            setAlbum(response.data.data))
+          .catch(error => console.error("Error:", error.response?.data || error.message));
+      } catch (err) {
+        console.error('Error fetching item:', err);
+      }
+    };
+
+    fetchItem();
+  }, []);
+
+
   return (
     <div id="content">
     {/* ----- TOP SECTION: INFO + CHAPTER ----- */}

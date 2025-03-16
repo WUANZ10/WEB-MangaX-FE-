@@ -24,11 +24,11 @@ const Router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: 'comic',
+        path: 'comic/:comicId',
         element: <Comic />
       },
       {
-        path: 'read',
+        path: 'read/:comicId/:chapter',
         element: <Read />
       },
       {
