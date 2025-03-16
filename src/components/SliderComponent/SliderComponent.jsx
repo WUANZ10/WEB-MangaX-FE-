@@ -16,16 +16,15 @@ export default function SliderComponent({ arrImages }) {
       <Slider {...settings}>
         {arrImages.map((image, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <img
-                key={index}
                 src={image}
                 alt="slider"
                 preview={false}
                 width="100%"
                 height="200px"
               />
-            </>
+            </React.Fragment>
           );
         })}
       </Slider>
