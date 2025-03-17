@@ -10,7 +10,12 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.23.4",
+<<<<<<< HEAD
     "axios": "^1.8.2",
+=======
+    "axios": "^1.8.1",
+    "jwt-decode": "^4.0.0",
+>>>>>>> edba3ddd049a17af06f2793d452050d64a8ad031
     "lazy": "^1.0.11",
     "lucide-react": "^0.475.0",
     "react": "^18.3.1",
