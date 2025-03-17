@@ -5,11 +5,13 @@ import "./headerStyle.css";
 import { CiSearch } from "react-icons/ci";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/slides/userSlice";
+import axios from "axios";
 
 export default function HeaderComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState("login");
   const [searchTerm, setSearchTerm] = useState("");
+  const [userdata, setUser] = useState([])
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -37,6 +39,26 @@ export default function HeaderComponent() {
     navigate("/home");
   };
 
+  
+  useEffect(() => {
+
+    const fetchItem = async () => {
+      try {
+        axios.get(`${process.env.REACT_APP_API_URL}/user/detailedUser/${localStorage.getItem("userId")}`)
+          .then((response) => 
+            {console.log(response.data)
+              setUser(response.data.data)})
+          .catch(error => console.error("Error:", error.response?.data || error.message));
+      } catch (err) {
+        console.error('Error fetching item:', err);
+      }
+    };
+
+    fetchItem();
+  }, []);
+
+      
+
   // useEffect(() => {
   //   if (searchTerm.trim() !== "") {
   //     navigate(`/home?search=${searchTerm}`);
@@ -63,7 +85,7 @@ export default function HeaderComponent() {
               <form onSubmit={(e) => e.preventDefault()}>
                 <input
                   className="text_album_find"
-                  placeholder="Bạn muốn tìm truyện gì"
+                  placeholder="Tìm truyện..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -77,7 +99,8 @@ export default function HeaderComponent() {
           <div className="right">
             {user.isLoggedIn ? (
               <div className="user-info">
-                <span>Xin chào, {user.name}</span>
+                <span>{user.name}</span>
+                <img/>
                 <button onClick={handleLogout}>Đăng xuất</button>
               </div>
             ) : (

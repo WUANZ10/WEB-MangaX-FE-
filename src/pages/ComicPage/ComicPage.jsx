@@ -10,6 +10,7 @@ import {ReadFromBeginning} from "./Buttons/ReadFromBeginning.jsx"
 import ShareButton from "./Buttons/Share.jsx";
 import EditButton from "./Buttons/Edit.jsx";
 import FooterComponent from "../../components/FooterComponent/FooterComponent.jsx";
+import Chapter from "./Buttons/Chapter.jsx";
 
 export default function ComicPage() {
   let [album, setAlbum] = useState({})
@@ -146,16 +147,7 @@ export default function ComicPage() {
       {/* Chapters List */}
       <div className="chapter-bottom-row">
         {filteredChapters.map((chapter) => (
-          <button key={chapter.id} className="chapter-item">
-            <div className="ladiv chapter-item-ladiv">
-              <img src={chapter.chapter_cover || "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"} alt={`Chapter ${chapter.chapter_number}`} />
-            </div>
-            <div className="chapter-item-text">
-              <h1 className="white chapter-item-title">
-                Chapter {chapter.chapter_number}: {chapter.chapter_name}
-              </h1>
-            </div>
-          </button>
+          <Chapter comicId={album._id} chapter={chapter}/>
         ))}
       </div>
     </div>
