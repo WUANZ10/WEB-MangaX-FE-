@@ -80,8 +80,8 @@ export default function HomePage() {
                   Không có truyện nào phù hợp với từ khóa "{searchTerm}"
                 </div>
               ) : (
-                albums.map((albuem) => (
-                  <ComicButton album={albuem}/>
+                albums.map((album) => (
+                  <ComicButton album={albuem} key={album._id}/>
                 ))
               )}
             </div>

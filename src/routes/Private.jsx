@@ -7,4 +7,3 @@ export default function Private() {
 
   return isLoggedIn ? <Outlet /> : <Navigate to="/home" replace />;
 }
-export default Private
