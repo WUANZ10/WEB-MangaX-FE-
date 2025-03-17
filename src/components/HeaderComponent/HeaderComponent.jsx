@@ -3,12 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import "./headerStyle.css";
 import { CiSearch } from "react-icons/ci";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/slides/userSlice";
 
 export default function HeaderComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState("login");
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const openModal = (component) => {
     setActiveComponent(component);
@@ -65,23 +69,30 @@ export default function HeaderComponent() {
             </div>
           </div>
           <div className="right">
-            <div className="button_style">
-              <button
-                className="pc_display text_button_register unselectable"
-                onClick={() => openModal("register")}
-              >
-                Đăng ký
-              </button>
-              <div className="box">
-                <span className="border-line" />
-                <button
-                  className="text_button_login unselectable"
-                  onClick={() => openModal("login")}
-                >
-                  Đăng nhập
-                </button>
+            {user.isLoggedIn ? (
+              <div className="user-info">
+                <span>Xin chào, {user.name}</span>
+                <button onClick={handleLogout}>Đăng xuất</button>
               </div>
-            </div>
+            ) : (
+              <div className="button_style">
+                <button
+                  className="pc_display text_button_register"
+                  onClick={() => openModal("register")}
+                >
+                  Đăng ký
+                </button>
+                <div className="box">
+                  <span className="border-line" />
+                  <button
+                    className="text_button_login"
+                    onClick={() => openModal("login")}
+                  >
+                    Đăng nhập
+                  </button>
+                </div>
+              </div>
+            )}
             <ModalComponent
               isOpen={isOpen}
               closeModal={closeModal}

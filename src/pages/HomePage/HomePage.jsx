@@ -15,6 +15,10 @@ import { PiStarHalf } from "react-icons/pi";
 import ComicButton from "./Album/Album.jsx"
 
 export default function HomePage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchTerm = queryParams.get("search") || "";
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
@@ -23,6 +27,9 @@ export default function HomePage() {
     const res = await albumService.getAllAlbum({
       page: page,
       pageSize: pageSize,
+      keyword: keyword,
+      orderBy: "title",
+      orderDirection: "asc",
     });
     console.log(res)
     return res.data;
@@ -67,10 +74,14 @@ export default function HomePage() {
               {isLoading ? (
                 <div className="unselectable">Loading...</div>
               ) : isError ? (
-                <div className="unselectable">Error fetching albums</div>
+                <div>Error fetching albums</div>
+              ) : albums.length === 0 ? (
+                <div>
+                  Không có truyện nào phù hợp với từ khóa "{searchTerm}"
+                </div>
               ) : (
-                albums.map((album) => (
-                  <ComicButton album={album} key={album._id}/>
+                albums.map((albuem) => (
+                  <ComicButton album={albuem}/>
                 ))
               )}
             </div>

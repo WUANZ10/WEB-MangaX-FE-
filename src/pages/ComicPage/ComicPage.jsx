@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import albumService from "../../services/albumService";
 import "./comicPageStyle.css";
-import { FaBookOpenReader, FaMagnifyingGlass, FaShare } from "react-icons/fa6";
+import { FaBookOpenReader, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarkSharp, IoEyeSharp, IoStar } from "react-icons/io5";
 import { RiImageEditFill, RiInformation2Fill } from "react-icons/ri";
 import { MdReport } from "react-icons/md";
 import axios from "axios";
-import { ReadFromBeginning } from "./Buttons/ReadFromBeginning.jsx"
+import { useParams } from "react-router-dom";
+import {ReadFromBeginning} from "./Buttons/ReadFromBeginning.jsx"
+import ShareButton from "./Buttons/Share.jsx";
+import EditButton from "./Buttons/Edit.jsx";
+import FooterComponent from "../../components/FooterComponent/FooterComponent.jsx";
 
 export default function ComicPage() {
   let [album, setAlbum] = useState({})
@@ -16,15 +18,16 @@ export default function ComicPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredChapters = (album.chapters || []).filter(chapter =>
-    chapter.chapter_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    chapter.chapter_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     chapter.chapter_number.toString().includes(searchTerm)
   );
 
   useEffect(() => {
+
     const fetchItem = async () => {
       try {
         axios.get(`${process.env.REACT_APP_API_URL}/album/detailedAlbum/${id.comicId}`)
-          .then((response) =>
+          .then((response) => 
             setAlbum(response.data.data))
           .catch(error => console.error("Error:", error.response?.data || error.message));
       } catch (err) {
@@ -33,129 +36,85 @@ export default function ComicPage() {
     };
 
     fetchItem();
-  }, [id.comicId]);
-
-  if (!album) {
-    return <div>Loading...</div>;
-  }
+  }, []);
   return (
-    <div id="comic_content">
-      {/* ----- TOP SECTION: LOGO + INFO ----- */}
-      <div className="top-section">
-        <div className="ladiv">
-          <img src="" id="logo" alt="Logo" />
-        </div>
-        <div className="info-section">
-          <h1 id="name" className="white comic-title">{album.title}</h1>
-          <p className="artist-name">Author: {album.author} / Artist: {album.artist}</p>
-
-          {/* Hàng TAG (trước đây là statsdiv với flex:4) */}
-          <div className="tags-row">
-            {(album.tags || []).map((i) => {
-              return <p className="p white tag unselectable">{i}</p>
-            })}
-          </div>
-
-          {/* Hàng STATS (trước đây là statsdiv với flex:20) */}
-          <div className="stats-row">
-            <div className="stats-column">
-              <div className="stats-column-left">
-                <FaBookOpenReader />
-                <p className="p label">Chapters</p>
-              </div>
-              <div className="stats-column-right">
-                <p className="p value">1,234,567,890</p>
-              </div>
-            </div>
-            <div className="stats-column">
-              <div className="stats-column-left">
-                <IoEyeSharp />
-                <p className="p label">Views</p>
-              </div>
-              <div className="stats-column-right">
-                <p className="p value">1,234,567,890</p>
-              </div>
-            </div>
-            <div className="stats-column">
-              <div className="stats-column-left">
-                <IoBookmarkSharp />
-                <p className="p label">Favorites</p>
-              </div>
-              <div className="stats-column-right">
-                <p className="p value">1,234,567,890</p>
-              </div>
-            </div>
-            <div className="stats-column">
-              <div className="stats-column-left">
-                <IoStar />
-                <p className="p label">Ratings</p>
-              </div>
-              <div className="stats-column-right">
-                <p className="p value">9.8 / 10</p>
-              </div>
-            </div>
-          </div>
-          <div className="stats-column-right">
-            <p className="p value">{(album.chapters || []).length}</p>
-          </div>
-        </div>
-        <div className="stats-column">
-          <div className="stats-column-left">
-            <IoEyeSharp />
-            <p className="p label">Views</p>
-          </div>
-          <div className="stats-column-right">
-            <p className="p value">{album.views || 0}</p>
-          </div>
-        </div>
-        <div className="stats-column">
-          <div className="stats-column-left">
-            <IoBookmarkSharp />
-            <p className="p label">Favorites</p>
-          </div>
-          <div className="stats-column-right">
-            <p className="p value">{album.favorites || 0}</p>
-          </div>
-        </div>
-        <div className="stats-column">
-          <div className="stats-column-left">
-            <IoStar />
-            <p className="p label">Ratings</p>
-          </div>
-          <div className="stats-column-right">
-            <p className="p value">{album.ratings || 0} / 10</p>
-          </div>
-        </div>
+    <><div id="comic_content">
+    {/* ----- TOP SECTION: LOGO + INFO ----- */}
+    <div className="top-section">
+      <div className="ladiv">
+        <img src="" id="logo" alt="Logo" />
       </div>
+      <div className="info-section">
+        <h1 id="name" className="white comic-title">{album.title}</h1>
+        <p className="artist-name">Author: {album.author} / Artist: {album.artist}</p>
 
-      {/* Hàng BUTTONS (trước đây là flex:1) */}
-      <div className="buttons-row">
-        <ReadFromBeginning comicId={album._id} />
-        <button className="button">
-          <div className="button-inner">
+        {/* Hàng TAG (trước đây là statsdiv với flex:4) */}
+        <div className="tags-row">
+          {(album.tags||[]).map((i)=>{
+            return <p className="p white tag unselectable">{i}</p>
+          })}
+        </div>
+
+        {/* Hàng STATS (trước đây là statsdiv với flex:20) */}
+        <div className="stats-row">
+          <div className="stats-column">
+            <div className="stats-column-left">
+              <FaBookOpenReader />
+              <p className="p label">Chapters</p>
+            </div>
+            <div className="stats-column-right">
+              <p className="p value">{(album.chapters||[]).length}</p>
+            </div>
+          </div>
+          <div className="stats-column">
+            <div className="stats-column-left">
+              <IoEyeSharp />
+              <p className="p label">Views</p>
+            </div>
+            <div className="stats-column-right">
+              <p className="p value">{album.views||0}</p>
+            </div>
+          </div>
+          <div className="stats-column">
+            <div className="stats-column-left">
+              <IoBookmarkSharp />
+              <p className="p label">Favorites</p>
+            </div>
+            <div className="stats-column-right">
+              <p className="p value">{album.favorites||0}</p>
+            </div>
+          </div>
+          <div className="stats-column">
+            <div className="stats-column-left">
+              <IoStar />
+              <p className="p label">Ratings</p>
+            </div>
+            <div className="stats-column-right">
+              <p className="p value">{album.ratings||0} / 10</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Hàng BUTTONS (trước đây là flex:1) */}
+        <div className="buttons-row">
+          <ReadFromBeginning comicId={album._id}/>
+          <button className="button">
+            <div className="button-inner">
             <IoBookmarkSharp />
-            <p className="p button-text unselectable">Favorite</p>
-          </div>
-        </button>
-        <button className="button">
-          <div className="button-inner">
-            <FaShare />
-            <p className="p button-text unselectable">Share</p>
-          </div>
-        </button>
-        <button className="button">
-          <div className="button-inner">
+              <p className="p button-text unselectable">Favorite</p>
+            </div>
+          </button>
+          <ShareButton url={window.location} title={album.title}/>
+          <button className="button">
+            <div className="button-inner">
             <MdReport />
-            <p className="p button-text unselectable">Report</p>
-          </div>
-        </button>
-        <button className="button">
-          <div className="button-inner">
-            <RiImageEditFill />
-            <p className="p button-text unselectable">Edit</p>
-          </div>
-        </button>
+              <p className="p button-text unselectable">Report</p>
+            </div>
+          </button>
+          {album.uploader_id==localStorage.getItem("userId")?<EditButton comicId={album._id}/>:<></>}
+        </div>
       </div>
+    </div>
 
       {/* ----- DESCRIPTION SECTION ----- */}
       <div className="description-block">
@@ -202,29 +161,31 @@ export default function ComicPage() {
         </div>
       </div>
 
-      {/* ----- COMMENTS SECTION ----- */}
-      <div className="comments-wrapper">
-        <h1 className="white comments-title unselectable">Comments</h1>
-        <div className="comments-box">
-          {/* Row trên: 2 khối (left 9, right 1) */}
-          <div className="comments-top-row">
-            <div className="comments-left"></div>
-            <div className="comments-right"></div>
-          </div>
-          {/* Row dưới: container list comments */}
-          <div className="comments-bottom-row">
-            <div className="comment-user-block">
-              <p className="white comment-username">Username</p>
-              <div className="comment-row">
-                <img src="" className="icon comment-avatar" alt="Avatar" />
-                <div className="comment-bubble">
-                  <p className="comment-text">Lorem Ipsum Dolor Sit Amet</p>
-                </div>
+    {/* ----- COMMENTS SECTION ----- */}
+    <div className="comments-wrapper">
+      <h1 className="white comments-title unselectable">Comments</h1>
+      <div className="comments-box">
+        {/* Row trên: 2 khối (left 9, right 1) */}
+        <div className="comments-top-row">
+          <div className="comments-left"></div>
+          <div className="comments-right"></div>
+        </div>
+        {/* Row dưới: container list comments */}
+        <div className="comments-bottom-row">
+          <div className="comment-user-block">
+            <p className="white comment-username">Username</p>
+            <div className="comment-row">
+              <img src="" className="icon comment-avatar" alt="Avatar" />
+              <div className="comment-bubble">
+                <p className="comment-text">Lorem Ipsum Dolor Sit Amet</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+        <FooterComponent />
+  </>
   );
 }
