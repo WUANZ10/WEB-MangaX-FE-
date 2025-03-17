@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/slides/userSlice";
 import axios from "axios";
+import Avatar from "./buttons/Avatar";
 
 export default function HeaderComponent() {
   const [isOpen, setIsOpen] = useState(false);
@@ -100,8 +101,8 @@ export default function HeaderComponent() {
             {user.isLoggedIn ? (
               <div className="user-info">
                 <span>{user.name}</span>
-                <img/>
-                <button onClick={handleLogout}>Đăng xuất</button>
+                <Avatar user={user}/>
+                <button onClick={handleLogout} className="button">Đăng xuất</button>
               </div>
             ) : (
               <div className="button_style">

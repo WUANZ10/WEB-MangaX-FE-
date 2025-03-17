@@ -10,23 +10,19 @@ const AlbumActions = ({ albumId }) => {
   const navigate = useNavigate();
 
   const handleUndo = () => {
-    // Simply navigate back to the comic page
     navigate(`/comic/${albumId}`);
   };
 
   const handleSave = async () => {
     try {
-      // Fire HTTP request to update album using Axios
       await axios.put(`http://localhost:3001/api/album/updateAlbum/${albumId}`);
     } catch (error) {
       console.error('Error updating album:', error);
     }
-    // After saving, navigate back to the comic page
     navigate(`/comic/${albumId}`);
   };
 
   const handleDelete = () => {
-    // Currently ignoring delete action; simply redirecting to home
     navigate('/');
   };
 

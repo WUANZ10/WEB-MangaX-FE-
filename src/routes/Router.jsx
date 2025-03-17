@@ -38,6 +38,10 @@ const Router = createBrowserRouter([
         element: <EditPage />
       },
       {
+        path: 'edit/:comicId/:chapter',
+        element: <Profile />
+      },
+      {
         path: 'favorites',
         element: <Favorites />
       },

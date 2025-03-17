@@ -17,19 +17,20 @@ export default function ComicPage() {
   const id = useParams()
 
   const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredChapters = (album.chapters || []).filter(chapter =>
-    chapter.chapter_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    chapter.chapter_number.toString().includes(searchTerm)
-  );
-
+  let filteredChapters = []
   useEffect(() => {
 
     const fetchItem = async () => {
       try {
         axios.get(`${process.env.REACT_APP_API_URL}/album/detailedAlbum/${id.comicId}`)
           .then((response) => 
-            setAlbum(response.data.data))
+            {setAlbum(response.data.data)
+            console.log(response.data.data)
+              filteredChapters = (album.chapters || []).filter(chapter =>
+                chapter.chapter_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                chapter.chapter_number.toString().includes(searchTerm)
+              );
+            })
           .catch(error => console.error("Error:", error.response?.data || error.message));
       } catch (err) {
         console.error('Error fetching item:', err);
@@ -37,7 +38,17 @@ export default function ComicPage() {
     };
 
     fetchItem();
-  }, []);
+
+  }, [id]);
+
+  useEffect(()=>{
+    filteredChapters = (album.chapters || []).filter(chapter =>
+      (chapter.chapter_name||"").toLowerCase().includes(searchTerm.toLowerCase()) || 
+      (chapter.chapter_number||0).toString().includes(searchTerm)
+    );
+  }, [searchTerm, album])
+
+
   return (
     <><div id="comic_content">
     {/* ----- TOP SECTION: LOGO + INFO ----- */}
