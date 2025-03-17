@@ -31,13 +31,19 @@ export default function HeaderComponent() {
     closeModal();
   };
 
-  // useEffect(() => {
-  //   if (searchTerm.trim() !== "") {
-  //     navigate(`/home?search=${searchTerm}`);
-  //   } else {
-  //     navigate("/home");
-  //   }
-  // }, [searchTerm, navigate]);
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    localStorage.removeItem("accessToken");
+    navigate("/home");
+  };
+
+  useEffect(() => {
+    if (searchTerm.trim() !== "") {
+      navigate(`/home?search=${searchTerm}`);
+    } else {
+      navigate("/home");
+    }
+  }, [searchTerm, navigate]);
 
   return (
     <div id="main_header">
@@ -65,15 +71,14 @@ export default function HeaderComponent() {
                   <CiSearch style={{ fontSize: 24, cursor: "pointer" }} />
                 </button>
               </form>
-              <div className="search_result" style={{ display: "none" }}></div>``
+              <div className="search_result" style={{ display: "none" }}></div>
             </div>
           </div>
           <div className="right">
             {user.isLoggedIn ? (
               <div className="user-info">
                 <span>Xin chào, {user.name}</span>
-                {/* <button onClick={handleLogout}>Đăng xuất</button> */}
-                <button>Đăng xuất</button>
+                <button onClick={handleLogout}>Đăng xuất</button>
               </div>
             ) : (
               <div className="button_style">
