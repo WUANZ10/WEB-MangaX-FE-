@@ -12,11 +12,11 @@ export function ReadFromBeginning({ comicId }) {
     navigate(`/read/${comicId}/0`);
   };
 
-  return           <button onClick={handleClick} className="button read-btn">
-              <div className="button-inner">
-              <FaBook />
-                <p className="p button-text unselectable">Read from Beginning</p>
-              </div>
-            </button>;
+  return <button onClick={handleClick} className="button read-btn">
+    <div className="button-inner">
+      <FaBook />
+      <p className="p button-text unselectable">Read from Beginning</p>
+    </div>
+  </button>;
 };
 ;

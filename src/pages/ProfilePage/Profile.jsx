@@ -16,6 +16,7 @@ export default function Profile() {
       setMoreSetting("close-more-op");
     }
   };
+  console.log("Profile rendered")
   const openAside = (status) => {
     if (status === "open-aside") {
       setAside("open-aside");
