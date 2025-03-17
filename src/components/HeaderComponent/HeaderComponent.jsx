@@ -65,14 +65,15 @@ export default function HeaderComponent() {
                   <CiSearch style={{ fontSize: 24, cursor: "pointer" }} />
                 </button>
               </form>
-              <div className="search_result" style={{ display: "none" }}></div>
+              <div className="search_result" style={{ display: "none" }}></div>``
             </div>
           </div>
           <div className="right">
             {user.isLoggedIn ? (
               <div className="user-info">
                 <span>Xin chào, {user.name}</span>
-                <button onClick={handleLogout}>Đăng xuất</button>
+                {/* <button onClick={handleLogout}>Đăng xuất</button> */}
+                <button>Đăng xuất</button>
               </div>
             ) : (
               <div className="button_style">

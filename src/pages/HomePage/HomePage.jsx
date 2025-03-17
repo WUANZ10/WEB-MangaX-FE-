@@ -5,7 +5,7 @@ import "./homePageStyle.css";
 import { Pagination } from "antd";
 import { useQuery } from "react-query";
 import albumService from "../../services/albumService";
-
+import { useNavigate,useLocation } from "react-router-dom";
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
 import slider3 from "../../assets/images/slider3.jpg";
@@ -27,7 +27,7 @@ export default function HomePage() {
     const res = await albumService.getAllAlbum({
       page: page,
       pageSize: pageSize,
-      keyword: keyword,
+      keyword: '',
       orderBy: "title",
       orderDirection: "asc",
     });
