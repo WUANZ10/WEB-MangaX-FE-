@@ -8,6 +8,7 @@ const NotFound = lazy(() => import("../pages/NotFoundPage/NotFoundPage"))
 const Profile = lazy(() => import("../pages/ProfilePage/Profile"))
 const Comic = lazy(() => import("../pages/ComicPage/ComicPage"))
 const Read = lazy(() => import("../pages/ReadPage/ReadPage"))
+const Favorites = lazy(() => import("../pages/FavoritesPage/FavoritePage"))
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
         element: <Read />
       },
       {
+        path: 'favorites',
+        element: <Favorites />
+      },
+      {
         path: '',
         element: <Private />,
         children: [
@@ -41,10 +46,12 @@ const Router = createBrowserRouter([
           }
         ]
       }
-      , {
+      ,
+      {
         path: '/404',
         element: <NotFound />
-      }, {
+      },
+      {
         path: '*',
         element: <Navigate to='/404' />
       }

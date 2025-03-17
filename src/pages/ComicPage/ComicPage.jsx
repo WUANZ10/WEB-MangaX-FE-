@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import {ReadFromBeginning} from "./Buttons/ReadFromBeginning.jsx"
 import ShareButton from "./Buttons/Share.jsx";
 import EditButton from "./Buttons/Edit.jsx";
+import FooterComponent from "../../components/FooterComponent/FooterComponent.jsx";
 
 export default function ComicPage() {
   let [album, setAlbum] = useState({})
@@ -37,7 +38,7 @@ export default function ComicPage() {
     fetchItem();
   }, []);
   return (
-    <div id="comic_content">
+    <><div id="comic_content">
     {/* ----- TOP SECTION: LOGO + INFO ----- */}
     <div className="top-section">
       <div className="ladiv">
@@ -184,5 +185,7 @@ export default function ComicPage() {
       </div>
     </div>
   </div>
+        <FooterComponent />
+  </>
   );
 }

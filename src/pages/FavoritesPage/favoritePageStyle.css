@@ -1,0 +1,119 @@
+#fav_content {
+    gap: 20px;
+}
+
+#fav_content .left .page_redirect {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    text-align: center;
+    max-width: 100%;
+}
+
+#fav_content .lst_album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+
+#fav_content .album-item-wrapper {
+    width: 20%;
+    min-width: 20vmin;
+    display: flex;
+}
+
+#fav_content .album-item {
+    aspect-ratio: 3/4;
+    max-height: 35vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color:#CCCEE3;
+}
+
+#fav_content .album-name {
+    font-size: 2.5vmin;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    transition-duration: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#fav_content .album-name:hover {
+    color: white;
+    width: fit-content;
+    z-index: 1;
+    background-color: #151D35;
+    padding: 1vmin 2vmin;
+    border-radius: 2vmin;
+    transition-duration: 0.2s;
+    max-width: none;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+#fav_content .album-logo {
+    width: 75%;
+    aspect-ratio: 0.9;
+    object-fit: cover;
+    border: 2px solid #2D334F;
+    border-radius: 8px;
+}
+
+#fav_content .stats-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#fav_content .p {
+    font-size: 2vmin;
+    text-overflow: ellipsis;
+  }
+
+  #fav_content  .icon {
+    font-size: 2vmin;
+  }
+
+  /* Mỗi cột Stats: width:30%, display:flex */
+  #fav_content  .stats-column {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 0.5vmin;
+  }
+  
+  /* Bên trái cột (icon + label) */
+  #fav_content  .stats-column-left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+  }
+  #fav_content  .stats-column-left svg{
+    font-size: 18px;
+    margin-right: 5px;
+  }
+  #fav_content   .label {
+    flex: 1;
+    margin-left: 5px;
+  }
+  
+  #fav_content  .stats-column-right {
+    width: 50%;
+  }
+  #fav_content   .value {
+    width: 100%;
+    font-weight: 450;
+  }

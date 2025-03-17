@@ -50,10 +50,6 @@ export default function HomePage() {
     setCurrentPage(page);
   };
 
-  const handleAlbumClick = (albumId) => {
-    navigate(`/comic/${albumId}`);
-  };
-
   return (
     <div>
       <div className="div_module">
@@ -85,15 +81,8 @@ export default function HomePage() {
                   Không có truyện nào phù hợp với từ khóa "{searchTerm}"
                 </div>
               ) : (
-                albums.map((album) => (
-                  <div
-                    key={album._id}
-                    className="album_item"
-                    onClick={() => handleAlbumClick(album._id)}
-                  >
-                    <h3>{album.title}</h3>
-                    <p>{album.artist}</p>
-                  </div>
+                albums.map((albuem) => (
+                  <ComicButton album={albuem}/>
                 ))
               )}
             </div>

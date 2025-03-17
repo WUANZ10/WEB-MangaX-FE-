@@ -14,8 +14,8 @@ export function ReadFromBeginning({ comicId }) {
 
   return           <button onClick={handleClick} className="button read-btn">
               <div className="button-inner">
-              <FaBook />
-                <p className="p button-text unselectable">Read from Beginning</p>
+              <FaBook className="white" />
+                <p className="p button-text unselectable white">Read from Beginning</p>
               </div>
             </button>;
 };

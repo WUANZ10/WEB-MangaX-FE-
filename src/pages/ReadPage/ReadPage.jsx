@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { PreviousChapter } from "./Buttons/PreviousChapter";
 import { NextChapter } from "./Buttons/NextChapter";
+import FooterComponent from "../../components/FooterComponent/FooterComponent";
 
 export default function ReadPage() {
   let [album, setAlbum] = useState({})
@@ -30,6 +31,7 @@ export default function ReadPage() {
 
 
   return (
+    <>
     <div id="read_content">
     {/* ----- TOP SECTION: INFO + CHAPTER ----- */}
     <div className="info-section">
@@ -54,5 +56,7 @@ export default function ReadPage() {
       <NextChapter max={chapter.length-1}/>
     </div>
   </div>
+        <FooterComponent />
+  </>
   );
 }
