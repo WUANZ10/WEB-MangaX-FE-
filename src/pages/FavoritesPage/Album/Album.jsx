@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { FaBookOpenReader } from "react-icons/fa6";
-import { IoBookmarkSharp, IoChatbubble, IoEyeSharp, IoStar } from "react-icons/io5";
-import "../homePageStyle.css";
+import { IoBookmarkSharp, IoChatbubble, IoEyeSharp } from "react-icons/io5";
 
 const ComicButton = ({ album }) => {
   const navigate = useNavigate();

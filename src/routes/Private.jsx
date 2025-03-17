@@ -1,9 +1,9 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Private=()=>{
-  const isAuthenticated = localStorage.getItem('accessToken');
+export default function Private() {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/home" replace />;
+  return isLoggedIn ? <Outlet /> : <Navigate to="/home" replace />;
 }
-export default Private

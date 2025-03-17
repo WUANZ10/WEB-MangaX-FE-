@@ -74,12 +74,12 @@
 /*************************************************/
 /* 2.2) STATS ROW (trước flex:20, gap:10px)      */
 /*************************************************/
-.stats-row {
+#comic_content .stats-row {
   margin: 10px 0;
 }
 
 /* Mỗi cột Stats: width:30%, display:flex */
-.stats-column {
+#comic_content .stats-column {
   width: 30%;
   display: flex;
   margin-bottom: 10px;
