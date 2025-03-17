@@ -37,13 +37,13 @@ export default function HeaderComponent() {
     navigate("/home");
   };
 
-  useEffect(() => {
-    if (searchTerm.trim() !== "") {
-      navigate(`/home?search=${searchTerm}`);
-    } else {
-      navigate("/home");
-    }
-  }, [searchTerm, navigate]);
+  // useEffect(() => {
+  //   if (searchTerm.trim() !== "") {
+  //     navigate(`/home?search=${searchTerm}`);
+  //   } else {
+  //     navigate("/home");
+  //   }
+  // }, [searchTerm, navigate]);
 
   return (
     <div id="main_header">

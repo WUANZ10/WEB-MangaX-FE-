@@ -1,16 +1,27 @@
 import { Bookmark, CircleStop, Eye } from "lucide-react";
 import React, { useEffect, useState } from "react";
-
+import axios from 'axios'
 export default function Comic(props) {
   const [textTitle,setTextTile]=useState('')
-  const [dataComic,setDataComic]=useState([
-    {
-      story_name:'',
-      chapter:0,
-      story_image:'',
-      chapter_list:'',
+  const [dataComic, setDataComic] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/api/album/showAlbum");
+      console.log("API response:", response.data); // In dữ liệu API
+      if (Array.isArray(response.data.data)) { 
+        setDataComic(response.data.data); // Lấy mảng từ `data`
+      } else {
+        console.error("Lỗi: API không trả về mảng!", response.data);
+        setDataComic([]); // Đảm bảo dữ liệu luôn là mảng
+      }
+    } catch (error) {
+      console.error("Lỗi khi gọi API:", error);
     }
-  ])
+  };
+  
+  useEffect(()=>{
+    fetchData()
+  },[])
   useEffect(()=>{
     switch (props.type) {
       case "follower":
@@ -29,7 +40,7 @@ export default function Comic(props) {
   return (
     <div className="comic-container">
       <div className="header-list">
-        <p>Danh sách truyện {textTitle} (0)</p>
+        <p>Danh sách truyện {textTitle} ({dataComic.length})</p>
         {props.type === "upload" ? (
           <button className="upload-new-comic">Đăng truyện</button>
         ) : (
@@ -37,11 +48,12 @@ export default function Comic(props) {
         )}
       </div>
       <div className="list-container">
+        {dataComic.map((comic)=>(
         <div className="comic-container">
-          <img src="/logo512.png" alt="truyện" />
+          <img src={comic.cover_image} alt="truyện" />
           <div className="comic-information">
-            <p className="name">Name</p>
-            <p className="chapter">Chapter 100</p>
+            <p className="name">{comic.title}</p>
+            <p className="chapter">Chapter {comic.chapters.length}</p>
           </div>
           <div className="comic-rate">
             <span className="icon-circle">
@@ -51,36 +63,15 @@ export default function Comic(props) {
               <span className="icon-rate">
                 <Bookmark />
               </span>
-              <p>100</p>
+              <p>{comic.views}</p>
               <span className="icon-rate">
                 <Eye />
               </span>
-              <p>3.5k</p>
+              <p>{comic.ratings}</p>
             </div>
           </div>
         </div>
-        <div className="comic-container">
-          <img src="/logo512.png" alt="truyện" />
-          <div className="comic-information">
-            <p className="name">Name</p>
-            <p className="chapter">Chapter 100</p>
-          </div>
-          <div className="comic-rate">
-            <span className="icon-circle">
-              <CircleStop />
-            </span>
-            <div className="rate">
-              <span className="icon-rate">
-                <Bookmark />
-              </span>
-              <p>100</p>
-              <span className="icon-rate">
-                <Eye />
-              </span>
-              <p>3.5k</p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
