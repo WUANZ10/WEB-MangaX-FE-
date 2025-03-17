@@ -80,9 +80,23 @@ body header.main_header {
 }
 
 /* header.main_header --> div_module --> right */
-#main_header.right {
+#main_header .right {
     float: right;
-    padding: 15px 0;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#main_header .right .user-info {
+    float: right;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap:10px;
 }
 
 #main_header .right .button_style {
@@ -107,6 +121,29 @@ body header.main_header {
 #main_header .right .button_style button:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+.main_header .right .avatar {
+    height: 56px;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    border: 2px solid #1f2955;
+    object-fit: cover;
+}
+
+.main_header .right .button {
+    border-radius: 10em;
+    border: none;
+    outline: none;
+    height: 75%;
+    padding: 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1f2955;
+    color: white;
+    cursor: pointer;
+    justify-content: center;
+  }
 
 /* right --> button_style --> box */
 .box {

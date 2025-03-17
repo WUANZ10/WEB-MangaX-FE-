@@ -9,6 +9,7 @@ const Profile = lazy(() => import("../pages/ProfilePage/Profile"))
 const Comic = lazy(() => import("../pages/ComicPage/ComicPage"))
 const Read = lazy(() => import("../pages/ReadPage/ReadPage"))
 const Favorites = lazy(() => import("../pages/FavoritesPage/FavoritePage"))
+const EditPage = lazy(() => import("../pages/EditAlbum/EditAlbumPage"))
 
   const Router = createBrowserRouter([
     {
@@ -31,6 +32,14 @@ const Favorites = lazy(() => import("../pages/FavoritesPage/FavoritePage"))
       {
         path: 'read/:comicId/:chapter',
         element: <Read />
+      },
+      {
+        path: 'edit/:comicId',
+        element: <EditPage />
+      },
+      {
+        path: 'edit/:comicId/:chapter',
+        element: <Profile />
       },
       {
         path: 'favorites',

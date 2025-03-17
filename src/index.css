@@ -108,3 +108,9 @@ ul {
   -ms-user-select: none;
   user-select: none;
 }
+
+.no-style {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}

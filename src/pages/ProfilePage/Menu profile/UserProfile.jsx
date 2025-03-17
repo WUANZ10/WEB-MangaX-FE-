@@ -94,7 +94,7 @@ export default function UserProfile() {
         alt="background"
       />
       <div className="user-data">
-        <img className="user-avt" src={userInput.avatar} alt="avt" />
+        <img className="user-avt" src={userInput.avatar||"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ3ztWTGwSgvZJvsA49k950OqfYRhhssQqaw&s"} alt="avt" />
         <p className="change-avt">
           Đổi ảnh đại diện{" "}
           <span className="icon-change">

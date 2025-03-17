@@ -20,9 +20,9 @@ export default function HomePage() {
   const searchTerm = queryParams.get("search") || "";
 
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 6;
 
-  const getAllAlbums = async (page = 1, pageSize = 10, keyword = "") => {
+  const getAllAlbums = async (page = 1, pageSize = 6, keyword = "") => {
     const res = await albumService.getAllAlbum({
       page: page,
       pageSize: pageSize,

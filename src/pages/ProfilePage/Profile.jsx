@@ -64,12 +64,7 @@ export default function Profile() {
             Truyện đã đăng
           </p>
           <div className="setting">
-            <p className="option" onClick={() => openMore("open-more-op")}>
-              <span className="icon">
-                <UserCog />
-              </span>
-              Cài đặt
-            </p>
+
             <div className="setting">
               <p className="option" onClick={()=>openMore("open-more-op")}>
                 <span className="icon">
