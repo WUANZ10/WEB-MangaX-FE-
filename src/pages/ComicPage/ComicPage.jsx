@@ -54,7 +54,7 @@ export default function ComicPage() {
     {/* ----- TOP SECTION: LOGO + INFO ----- */}
     <div className="top-section">
       <div className="ladiv">
-        <img src="" id="logo" alt="Logo" />
+        <img src={album.cover_image} id="logo" alt="Logo" />
       </div>
       <div className="info-section">
         <h1 id="name" className="white comic-title">{album.title}</h1>
