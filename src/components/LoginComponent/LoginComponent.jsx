@@ -4,6 +4,10 @@ import { useMutationHooks } from "../../hooks/useMutationHook";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import userService from "../../services/userService";
 import { showSuccessToast, showErrorToast } from "../../config/toastConfig";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/slides/userSlice";
+
 import "./loginStyle.css";
 
 export default function LoginComponent({ onLoginSuccess }) {
@@ -11,6 +15,7 @@ export default function LoginComponent({ onLoginSuccess }) {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const mutation = useMutationHooks((data) => userService.loginUser(data));
   const { isLoading } = mutation;
@@ -31,6 +36,18 @@ export default function LoginComponent({ onLoginSuccess }) {
         onSuccess: (response) => {
           const { access_token } = response.data;
           localStorage.setItem("accessToken", access_token);
+
+          const decoded = jwtDecode(access_token);
+          console.log(decoded)
+          const userInfo = {
+            name: decoded.payload?.username,
+            email: decoded.payload?.email,
+            access_token: access_token,
+            isLoggedIn: true,
+          };
+
+          dispatch(updateUser(userInfo));
+          localStorage.setItem("userInfo", JSON.stringify(userInfo));
           showSuccessToast("Đăng nhập thành công!");
           onLoginSuccess();
           navigate("/home");

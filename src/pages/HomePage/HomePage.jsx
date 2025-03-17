@@ -17,7 +17,7 @@ export default function HomePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const searchTerm = queryParams.get("search") || ""; 
+  const searchTerm = queryParams.get("search") || "";
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
@@ -27,6 +27,8 @@ export default function HomePage() {
       page: page,
       pageSize: pageSize,
       keyword: keyword,
+      orderBy: "title",
+      orderDirection: "asc",
     });
     return res.data;
   };
