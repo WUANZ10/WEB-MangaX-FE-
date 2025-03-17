@@ -38,9 +38,9 @@ export default function ReadPage() {
     </div>
     {/* ----- MIDDLE SECTION: NAVIGATION BUTTONS + PAGES ----- */}
     <div className="navbar">
-      <button className="no-style center white semibold flex1 left"><IoIosArrowBack className="icon"/> Previous Chapter</button>
-      <h3 className="normal flex1 center">{(chapter[Number(params.chapter)]||[]).chapter_name}</h3>
-      <button className="no-style center white semibold flex1 right">Next Chapter <IoIosArrowForward className="icon"/></button>
+    <PreviousChapter/>
+    <h3 className="normal flex1 center">{(chapter[Number(params.chapter)]||[]).chapter_name}</h3>
+    <NextChapter max={chapter.length-1}/>
     </div>
     <div className="page-holder">
       {((chapter[Number(params.chapter)]||[]).pages||[]).map((page)=>(
@@ -51,7 +51,7 @@ export default function ReadPage() {
     <div className="navbar">
       <PreviousChapter/>
       <h3 className="normal flex1 center">{(chapter[Number(params.chapter)]||[]).chapter_name}</h3>
-      <NextChapter max={chapter.length}/>
+      <NextChapter max={chapter.length-1}/>
     </div>
   </div>
   );

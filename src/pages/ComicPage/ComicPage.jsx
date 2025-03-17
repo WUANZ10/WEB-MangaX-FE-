@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./comicPageStyle.css";
-import { FaBookOpenReader, FaMagnifyingGlass, FaShare } from "react-icons/fa6";
+import { FaBookOpenReader, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarkSharp, IoEyeSharp, IoStar } from "react-icons/io5";
 import { RiImageEditFill, RiInformation2Fill } from "react-icons/ri";
 import { MdReport } from "react-icons/md";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import {ReadFromBeginning} from "./Buttons/ReadFromBeginning.jsx"
+import ShareButton from "./Buttons/Share.jsx";
+import EditButton from "./Buttons/Edit.jsx";
 
 export default function ComicPage() {
   let [album, setAlbum] = useState({})
@@ -101,24 +103,14 @@ export default function ComicPage() {
               <p className="p button-text unselectable">Favorite</p>
             </div>
           </button>
-          <button className="button">
-            <div className="button-inner">
-            <FaShare />
-              <p className="p button-text unselectable">Share</p>
-            </div>
-          </button>
+          <ShareButton url={window.location} title={album.title}/>
           <button className="button">
             <div className="button-inner">
             <MdReport />
               <p className="p button-text unselectable">Report</p>
             </div>
           </button>
-          <button className="button">
-            <div className="button-inner">
-            <RiImageEditFill />
-              <p className="p button-text unselectable">Edit</p>
-            </div>
-          </button>
+          {album.uploader_id==localStorage.getItem("userId")?<EditButton comicId={album._id}/>:<></>}
         </div>
       </div>
     </div>
