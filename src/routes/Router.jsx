@@ -10,7 +10,7 @@ const Comic = lazy(() => import("../pages/ComicPage/ComicPage"))
 const Read = lazy(() => import("../pages/ReadPage/ReadPage"))
 const Favorites = lazy(() => import("../pages/FavoritesPage/FavoritePage"))
 const EditPage = lazy(() => import("../pages/EditAlbum/EditAlbumPage"))
-
+const EditChapter = lazy(() => import("../pages/EditChapter/EditChapterPage"))
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -39,7 +39,7 @@ const Router = createBrowserRouter([
       },
       {
         path: 'edit/:comicId/:chapter',
-        element: <Profile />
+        element: <EditChapter />
       },
       {
         path: 'favorites',

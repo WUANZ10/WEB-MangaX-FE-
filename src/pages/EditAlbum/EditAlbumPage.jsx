@@ -15,7 +15,7 @@ export default function EditPage() {
   const authorRef = useRef(null);
   const artistRef = useRef(null);
   const desRef = useRef(null);
-  const { comicId } = useParams();
+  const comicId = useParams();
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredChapters = (album.chapters || []).filter(chapter =>
@@ -26,7 +26,7 @@ export default function EditPage() {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        axios.get(`${process.env.REACT_APP_API_URL}/album/detailedAlbum/${comicId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/album/detailedAlbum/${comicId.comicId}`)
           .then((response) => setAlbum(response.data.data))
           .catch(error => console.error("Error:", error.response?.data || error.message));
       } catch (err) {
